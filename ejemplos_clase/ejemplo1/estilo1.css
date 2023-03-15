@@ -1,0 +1,17 @@
+#dv01 {
+    width: 20em;
+    height: 20em;
+    border: 1em solid #234;
+}
+
+#dv01 > div {
+    width: 10em;
+    width: 10em;
+    border: 1em solid #a00;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
