@@ -34,3 +34,25 @@ function prepararEventos() {
         }, true);
     });
 }
+
+function pedirPubs() {
+    let xhr = new XMLHttpRequest(),
+        url = 'api/publicaciones';
+
+    xhr.open('GET', url, true);
+
+    xhr.responseType = 'json';
+    
+    xhr.onload = function(){
+        let r = xhr.response;
+        let html = '';
+        console.log(r);
+
+        r.FILAS.forEach(function(e){
+            html += '<li>' + e.titulo + '</li>'
+        });
+
+        document.querySelector('#lista').innerHTML = html;
+    }
+    xhr.send();
+}
