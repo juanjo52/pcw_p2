@@ -18,4 +18,19 @@ function prueba(){
 function clic(evt){
     // console.log(evt);
     console.log(evt.currentTarget);
+    // evt.stopPropagation();
+}
+
+function prepararEventos() {
+    let v = document.querySelectorAll('.evento');
+
+    // console.log(v);
+    v.forEach( function(e){
+        e.addEventListener('click', function(evt){
+            console.log(evt.currentTarget + ' (Burbujeo)');
+        });
+        e.addEventListener('click', function(evt){
+            console.log(evt.currentTarget + ' (Captura)');
+        }, true);
+    });
 }
