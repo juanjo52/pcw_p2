@@ -1,1 +1,3 @@
 En esta carpeta estarán los ejemplos que hagamos en clase sobre la práctica 2 de pcw :P
+
+hola prueba desde portatil
