@@ -1,0 +1,24 @@
+body>section>div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.foto {
+    padding: .5em;
+    border: .1em solid #234;
+    margin: .5em;
+    width: 20em;
+    height: 30em;
+}
+
+    .foto > img{
+        width: 15em;
+        height: 20em;
+        display: block;
+        margin: .5em auto;
+    }
+
+input[type="file"] {
+    display: none;
+}
