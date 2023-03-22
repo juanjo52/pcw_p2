@@ -9,3 +9,10 @@ function eliminarFoto(btn){
 
     div.remove();
 }
+
+function mostrarFoto(inp){
+    let fichero = inp.files[0],
+        img = inp.parentElement.querySelector('img');
+    
+    img.src = URL.createObjectURL( fichero );
+}
