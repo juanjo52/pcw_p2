@@ -5,6 +5,7 @@ function pedirPubs() {
 
     let url = 'api/publicaciones';
 
+    url = url + '?pag=0¬lpag=2';  //pag nº pagina, lpag cuantos elementos hay en la página
 
     fetch(url).then(function(response){
         if(response.ok){
