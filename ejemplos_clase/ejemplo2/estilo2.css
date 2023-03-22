@@ -1,0 +1,10 @@
+body > article {
+    width: 40em;
+    padding: .5em;
+    margin: .5em auto;
+    border: .1em solid #234;
+}
+
+.seleccionado {
+    background-color: #af0;
+}
