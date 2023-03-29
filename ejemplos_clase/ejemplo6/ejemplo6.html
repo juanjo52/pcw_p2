@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo06.css">
+    <script src="codigo6.js"></script>
+</head>
+<body>
+    <h1>Ejemplo de publicación</h1>
+    <section>
+        <h2>Nueva publicación</h2>
+        <form onsubmit="crearPublicacion(event);">
+            <div><label>Título:</label><input type="text"
+            name="titulo"></div>
+            <div><label>Texto:</label><textarea type="texto"
+            name="texto"></textarea></div>
+            <div><label>Zona:</label><input type="text"
+            name="zona"></div>
+            <div id="fotos">
+                <div>
+                    <input type="file" name="fotos[]">
+                    <textarea name="descripciones[]"></textarea>
+                </div>
+                <div>
+                    <input type="file" name="fotos[]">
+                    <textarea name="descripciones[]"></textarea>
+                </div>
+                <div>
+                    <input type="file" name="fotos[]">
+                    <textarea name="descripciones[]"></textarea>
+                </div>
+                <div>
+                    <input type="file" name="fotos[]">
+                    <textarea name="descripciones[]"></textarea>
+                </div>
+                <div>
+                    <input type="submit">
+                </div>
+            </div>
+        </form>
+    </section>
+</body>
+</html>
