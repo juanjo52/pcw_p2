@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/nueva.css">
+    <!-- <link rel="stylesheet" href="./css/login.css"> -->
+    <link rel="stylesheet" href="cssfont/fontello.css">
+    <title>P1</title>
+    <!-- en css salta advertencia -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Aquí va el logo, el títuloy  el slogan de la página -->
+        <a href="./index.html">
+            <img src="./img/logo.png" alt="Imagen de cabecera">
+        </a>
+        <h1>InfoBarrio</h1>
+        <h2>Aquí te escuchamos</h2>
+    </header>
+
+    <nav>
+        <label for="chkMenu">&equiv;</label>
+        <input type="checkbox" id="chkMenu">
+        <ul class="enlaces">
+            <li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>
+            <li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>
+            <li><a href="./login.html" class="icon-login"><span>Login</span></a></li>
+            <li><a href="./index.html" class="icon-logout"><span>Logout</span></a></li>
+            <li><a href="./registro.html" class="icon-user-add"><span>Registro</span></a></li>
+            <li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>
+        </ul>
+    </nav>
+
+    <section id="seccion01">
+        <h3>Nueva publicacion</h3>
+        <button type="button"><span class="icon-plus"></span>Añadir imagen</button>
+        <hr>
+    </section>
+
+    <div class="container">
+        <form>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" maxlength="200" autofocus required>
+
+            <label for="texto">Texto:</label>
+            <textarea id="texto" name="texto" rows="5" cols="50" required></textarea>
+
+            <!-- hacer lo del datalist -->
+            <label for="ubicacion">Ubicación:</label>
+            <input type="text" id="ubicacion" name="ubicacion" list="ubicaciones" maxlength="100" required>
+
+            <datalist id="ubicaciones">
+                <option>Tómbola</option>
+                <option>San Blas</option>
+                <option>San Agustín</option>
+                <option>Los Ángeles</option>
+                <option>Virgen del Carmen</option>
+                <option>Virgen del Remedio</option>
+                <option>Rabasa</option>
+                <option>San Juan Playa</option>
+                <option>Carolinas Altas</option>
+                <option>Carolinas Bajas</option>
+                <option>Florida</option>
+                <option>Ciudad de Asis</option>
+            </datalist>
+            <div class="botonera">
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Borrar">
+            </div>
+        </form>
+        <label>Imágenes:</label>
+        <div class="imagenes">
+            <label for="foto1"><img src="./img/no-image.png" alt="Imagen 1"></label>
+            <div class="button-group">
+                <label for="foto1" class="icon-folder-add"></label>
+                <input type="file" id="foto1" accept="image/*">
+
+                <button class="icon-folder-delete"></button>
+            </div>
+        </div>
+        <div class="imagenes">
+            <label for="foto2"><img src="./img/no-image.png" alt="Imagen 2"></label>
+            <div class="button-group">
+                <label for="foto2" class="icon-folder-add"></label>
+                <input type="file" id="foto2" accept="image/*">
+
+                <button class="icon-folder-delete"></button>
+            </div>
+        </div>
+        <div class="imagenes">
+            <label for="foto3"><img src="./img/no-image.png" alt="Imagen 3"></label>
+            <div class="button-group">
+                <label for="foto3" class="icon-folder-add"></label>
+                <input type="file" id="foto3" accept="image/*">
+
+                <button class="icon-folder-delete"></button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 - Acerca</a></span>
+    </footer>
+</body>
+
+</html>

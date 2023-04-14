@@ -1,0 +1,35 @@
+
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 25%;
+}
+
+td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-radius: 1em;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+td:nth-child(1) {
+    background-color: #00352F;
+    color: #fff;
+}
+
+
+.tablaArticle td{
+    border-bottom: 0;
+    
+}
+
+.tablaArticle td:nth-child(1) {
+    background-color: #CEDC00;
+    color: #000000;
+}

@@ -1,0 +1,54 @@
+section{
+    text-align: center;
+}
+
+h3{
+    margin-top: 50px;
+    margin-bottom: -10px;
+}
+
+.area{
+    margin-top: 10px;
+}
+
+.botones{
+    margin-top: 10px;
+}
+
+.botones > a{
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+form{
+	width:300px;
+    height: 280px;
+	padding:30px;
+	border-radius:10px;
+	margin:auto;
+	background-color:#00594F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+form > h3{
+    margin-top: -10px;
+    font-size: 30px;
+    color: white;
+}
+form > label{
+    color: white;
+    margin-top: 5px;
+}
+section > img{
+    float: right;
+}
+/* Esto lo deberiamos de poner en un css comun */
+
+/* Mirara que el footer este pegado abajo */

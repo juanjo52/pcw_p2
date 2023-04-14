@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="cssfont/fontello.css"> 
+    <title>P1</title>
+    <!-- en css salta advertencia -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+    </style>
+</head>
+<body>
+    <header class="header">
+        <!-- Aquí va el logo, el títuloy  el slogan de la página -->
+        <a href="index.html">
+            <img src="./img/logo.png" alt="Imagen de cabecera">
+        </a>
+        <h1>InfoBarrio</h1>
+        <h2>Aquí te escuchamos</h2>
+    </header>
+    <nav>
+        <label for="chkMenu">&equiv;</label>
+        <input type="checkbox" id="chkMenu">
+        <ul class="enlaces">
+            <li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>
+            <li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>
+            <li><a href="./login.html" class="icon-login"><span>Login</span></a></li>
+            <li><a href="./index.html" class="icon-logout"><span>Logout</span></a></li>
+            <li><a href="./registro.html" class="icon-user-add"><span>Registro</span></a></li>
+            <li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>
+        </ul>
+    </nav>
+
+    <section>
+            
+        <form>
+            <h3>Iniciar sesión</h3><br>
+                <label>Nombre:</label>
+                <input type="text" class="area" placeholder="Nombre..." autofocus required><br>
+                <label>Contraseña:</label>
+                <input type="password" class="area" placeholder="Contraseña..." required> <br>
+                <div class="botones">
+                    <a href="./registro.html">Registrarse</a><input type="submit" value="Acceder" >
+                </div>
+        </form>   
+    </section>
+
+    <br><br>
+    <footer>
+        <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 -  Acerca</a></span>
+    </footer>
+</body>
+</html>

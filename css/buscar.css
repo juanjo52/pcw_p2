@@ -1,0 +1,80 @@
+section > h3{
+    text-align: left;
+    margin-left: 10px;
+}
+
+section > table{
+    margin: auto;
+}
+
+.tResul{
+    margin-top: -20px;
+    
+}
+
+section > table > tr > td > div > div > input{
+
+    text-align: right;
+}
+
+
+/* Como poner articulos en cada tamaño sin tener que cambiar cada media query*/
+#seccion01 > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); /* nota Juanjo: autofill deja huecos y autofit rellena el hueco*/
+    grid-gap: .5em;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 400px){
+    body > nav > ul {
+        display: block;
+    }
+
+    body > nav > ul > li {
+        display: inline-block;
+    }
+
+    body > nav > ul > li > a {
+        padding: .4em;
+    }
+
+    body > nav > ul > li > a > span {
+        display: none;
+    }
+
+    body > nav > label[for] {
+        display: none;
+    }
+}
+
+@media (min-width: 540px){
+    body > nav > ul > li > a > span {
+        display: inline-block;
+    }
+
+    body > header {
+        display: grid;
+        grid-template-areas:"img h1"
+                            "h2 h2";
+        grid-template-columns: 30% auto;
+        grid-gap: .4em;
+        justify-content: center;
+        justify-items: center;
+
+    }
+}
+
+@media (min-width: 700px){
+    /*#seccion01 > div {
+        grid-template-columns:33% 33% 33%;
+    }*/
+
+    /* #seccion01 > div > article {
+        width: 30%;
+    }*/
+}
+
+.f2{
+    float: right;
+}

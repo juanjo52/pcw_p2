@@ -1,0 +1,346 @@
+/* Importamos fuente del título y subtítulo*/
+/* FUENTES WEB */
+
+body{ 
+    min-width:350px;
+    min-height:350px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+body > header{
+    background-color: #00352F;
+    padding: .5em;
+    font-family: Arial, Helvetica, sans-serif;
+} 
+
+body > header > h1, h2 {
+    color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5{
+    font-family: 'Rajdhani', sans-serif;
+
+}
+
+/*  FOOTER */
+body > footer{
+    background-color: #00352F;
+    text-align: center;
+    padding: 1em 0; 
+    margin-top: auto;
+
+}
+
+.f3{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.f3 > a {
+    text-decoration: none;
+    color: inherit;
+}
+/* *************** */
+
+.fechas {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+#seccion01 > div > article,
+body > section > article{
+    border-radius: 1em;
+    background-color: #00594F;
+    padding: .5em;
+    margin: .5em 0;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+#seccion01 > div > article:hover,
+body > section > article:hover {
+    background-color: #CEDC00;
+    transition: all .5s ease-in-out;
+}
+
+#seccion01 > div > article:hover > div > .fechas {
+    color: #000000;
+    transition: all .5s ease-in-out;
+}
+
+#seccion01 > div > article:hover > div > .f2 {
+    color: #000000;
+    transition: all .5s ease-in-out;
+
+}
+
+
+body > nav {
+    z-index: 999;
+    background-color: #00594F;
+
+    position: sticky;
+    top: 0;
+}
+
+
+body > nav > ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #00594F;
+
+    display:none; /* Se oculta el elemento */
+}
+
+body > nav > ul > li > a{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: 14px;
+}
+
+.enlaces > li{
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #00594F;
+    color: #FFFFFF; 
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all .5s ease-in-out;
+}
+
+.enlaces > li:hover {
+    background-color: #CEDC00;
+    color: #000000; 
+    transition: all .5s ease-in-out;
+}
+
+.fotosPubli {
+    width: 100%;
+    height: 300px;
+    object-fit: fill;
+    object-position: bottom;
+}
+
+.fotosAcerca {
+    width: 300px;
+    height: 300px;
+    padding-top: .5em;
+    margin-left: 32%;
+    object-fit: fill;
+    object-position: bottom;
+}
+
+article > a > .fotosAcerca {
+    align-items: center;
+}
+
+section > div > article > a{  
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color:#FFFFFF;
+    font-size: 1.5em;
+}
+
+/* Cuando articulo esta seleccionado */
+section > div > article:hover > a{  
+    color:#000000;
+    transition: all .5s ease-in-out;
+
+}
+
+section > div > article > a > h4{  
+    text-align: center;
+
+    text-overflow: ellipsis;
+
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+section > div > article:hover > a > img{  
+    /* filter: blur(5px);  */
+    filter: grayscale(80%);
+    transition: all .5s ease-in-out;
+}
+
+body > nav > label {
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+/* Parte paginacion */
+.partePaginacion {
+    text-align: center;
+    padding: .5em;
+}
+
+.botones > button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #CEDC00;
+    color: #333;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+.botones > button:hover {
+    background-color: #00594F;
+    color: #fff;
+    transition: all .5s ease-in-out;
+}
+
+.botones > span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+h2{
+    font-weight: lighter;
+}
+
+/* línea separadora*/
+hr {
+    border: 2px solid #CEDC00;
+}
+
+#chkMenu{
+    display: none;
+}
+
+#chkMenu:checked + ul {
+    display: block; /* Muestra el elemento */
+}
+
+
+
+/* MEDIA QUERIES */
+
+/* Tamaño pequeño*/
+@media (min-width: 400px){
+    body > header {
+        display: grid;
+        grid-template-areas:"img h1"
+                            "h2 h2";
+        grid-template-columns: 30% auto;
+        grid-gap: .4em;
+        justify-content: center;
+        justify-items: center;
+    }
+    
+    body > header > a > img {
+        grid-area: img;
+        cursor: pointer;
+        height: 300px;
+    }
+
+    header h1{
+        margin-top: 100%;
+    }
+
+    body > header > img {
+        grid-area: img;
+        cursor: pointer;
+    }
+    
+    body > header > h1 {
+        grid-area: h1;
+    }
+
+    body > header > h2 {
+        grid-area: h2;
+        justify-self: end;
+    }
+
+    body > nav {
+        text-align: center;
+        z-index: 999;
+        
+    }
+
+    .enlaces > li{
+        width: 10%;
+        display: inline-block;
+    }
+
+    body > nav > ul {
+        display: block;
+    }
+
+    body > nav > ul > li {
+        display: inline-block;
+    }
+
+    body > nav > ul > li > a {
+        padding: .5em;
+    }
+
+    body > nav > ul > li > a > span {
+        display: none;
+    }
+
+    body > nav > label[for] {
+        display: none;
+    }
+}
+
+/* Tamaño mediano*/
+@media (min-width: 875px){
+    body > nav > ul > li > a > span {
+        display: inline-block;
+    }
+
+    #seccion01 > div {
+        display: flex;
+        flex-wrap: wrap;
+
+        justify-content: space-evenly;
+    }
+
+    #seccion01 > div > article {
+        width: 45%;
+        margin: .5em;
+
+        flex-grow: 1;
+    }
+}
+
+/* Tramaño grande */
+@media (min-width: 1000px){
+    #seccion01 > div > article {
+        width: 30%;
+    }
+}
+.f2{
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+
+/*section > div > article > a > img:hover{
+    
+    filter: blur(5px); ----> estaba comentada esta linea
+    transform: scale(0.8)
+}*/
+
+input:hover,textarea:hover{
+    background-color: #CEDC00;
+}

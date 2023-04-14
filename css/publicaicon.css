@@ -1,0 +1,112 @@
+.datos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.datos > span{
+    display:inline-flex;
+    justify-content:center;
+    
+}
+.datos > label > .info{
+
+    display:inline-flex;
+    align-items:center;
+
+}
+
+.datos > label > .coments{
+
+    display:inline-flex;
+    justify-content:flex-end;
+
+}
+
+.men{
+    border: 1px solid #00594F;
+}
+
+.fotosDentro{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px;
+}
+
+.fotosDentro > img{
+    flex: 1;
+}
+
+.section03{
+    margin-top: 125px;
+}
+
+.section03 > div{
+    position: relative;
+}
+
+.section03 > div > div > img{
+    width: 150px;
+}
+
+.section03 > div > div >label{
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.area2{
+    width: 25%;
+    float: right;
+    padding-right: 20px;
+}
+
+.area2 > div > label{
+    text-align: left;
+}
+
+.coments{
+    width: 70%;
+}
+.usernames{
+    font-weight: bold;
+}
+
+.area2, .section03 > div{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.area2 > div > textarea{
+    margin-top: 10px;
+    width: 90%;
+    /* padding: 20px; */
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.bot2 > input{
+    display: inline-block;
+}
+
+.bot2 > input:nth-child(2){
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #CEDC00;
+    color: #333;
+    cursor: pointer;
+
+}
+
+.bot2 > input:nth-child(2):hover{
+    
+    background-color: #00594F;
+    color: #fff;
+}
