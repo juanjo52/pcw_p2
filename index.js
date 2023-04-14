@@ -2,18 +2,29 @@ function pedirPubs() {
  
     let url = 'api/publicaciones';
 
-    url = url + '?pag=0&lpag=5';  //pag nº pagina, lpag cuantos elementos hay en la página
+    url = url + '?pag=0&lpag=4';  //pag nº pagina, lpag cuantos elementos hay en la página
 
     fetch(url).then(function(response){
         if(response.ok){
             response.json().then(function(datos){
                 console.log(datos);
                 datos.FILAS.forEach(function(e){
-                    let li = document.createElement('li');
+                    let article = document.createElement('article');
 
-                    li.innerHTML= e.titulo;
+                    article.innerHTML= 
+                        '<a href="./publicacion.html">'
+                        +
+                        '<h4 title="'+e.titulo+'">'+ e.titulo+'</h4>'
+                        +
+                        '<img src="./fotos/pubs/'+ e.imagen+'"'+'alt="nano coche" class="fotosPubli"> </a>'
+                        +
+                        '<div> <span class="fechas">'+e.fechaCreacion+'</span> <span class="f2"><a class="icon-user">'+ e.autor +
+                        '</span></div>';
+                        
 
-                    document.querySelector('#lista').appendChild(li);
+                    document.querySelector('#contenedorPublicaciones').appendChild(article);
+
+
                 });
             });
         }
