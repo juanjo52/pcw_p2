@@ -1,4 +1,4 @@
-function pedirPubs() {
+function mostrarPublicaciones() {
  
     let url = 'api/publicaciones';
 
