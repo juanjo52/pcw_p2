@@ -18,7 +18,8 @@ function mostrarPublicaciones() {
                         +
                         '<img src="./fotos/pubs/'+ e.imagen+'"'+'alt="nano coche" class="fotosPubli"> </a>'
                         +
-                        '<div> <span class="fechas">'+e.fechaCreacion+'</span> <span class="f2"><a class="icon-user">'+ e.autor +
+                        '<div> <span class="fechas">'+e.fechaCreacion+'</span> <span class="f2"><img src="./fotos/usuarios/'+e.fotoAutor+'" alt="foto user" class="fotosUsuario">' 
+                        + e.autor +
                         '</span></div>';
                         
 
