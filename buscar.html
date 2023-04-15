@@ -13,6 +13,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
     </style>
+    <script src="./buscar.js"></script>
 </head>
 
 <body>
@@ -68,7 +69,7 @@
                 </tr>
                 <tr>
                     <td><label>Ubicación: </label></td>
-                    <td><label><input type="text" placeholder="Separar por comas"></label></td>
+                    <td><label><input type="text" placeholder="Separar por comas" id="zonaPubli"></label></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -78,59 +79,7 @@
         <section id="seccion01">
             <h3>Resultados:</h3>
             <hr>
-            <div>
-                <article>
-                    <a href="./publicacion.html">
-                        <h4 title="El parque está lleno de basura lo cual es un peligro para los niños">El parque está
-                            lleno de basura lo cual es un peligro para los niños</h4>
-                        <img src="./img/parque_basura.jpg" alt="nano coche" class="fotosPubli">
-                    </a>
-                    <div><span class="fechas">15-06-2022</span><span class="f2"><a class="icon-user">Usuario1</a></span>
-                    </div>
-                </article>
-                <article>
-                    <a href="./publicacion.html">
-                        <h4 title="Semaforo roto en el cruce">Semaforo roto en el cruce</h4>
-                        <img src="./img/semaforo_roto.jpeg" alt="nano coche" class="fotosPubli">
-                    </a>
-                    <div><span class="fechas">12-08-2022</span><span class="f2"><a class="icon-user">Usuario2</a></span>
-                    </div>
-                </article>
-                <article>
-                    <a href="./publicacion.html">
-                        <h4 title="Robos en la explanada">Robos en la explanada</h4>
-                        <img src="./img/explanada.jpg" alt="nano coche" class="fotosPubli">
-                    </a>
-                    <div><span class="fechas">01-02-2023</span><span class="f2"><a class="icon-user">Usuario3</a></span>
-                    </div>
-                </article>
-                <article>
-                    <a href="./publicacion.html">
-                        <h4 title="Las carreras ilegales yo creo que ya son un problema serio">Las carreras ilegales yo
-                            creo que ya son un problema serio</h4>
-                        <img src="./img/carrerasl.jpeg" alt="nano coche" class="fotosPubli">
-                    </a>
-                    <div><span class="fechas">28-10-2022</span><span class="f2"><a class="icon-user">Usuario4</a></span>
-                    </div>
-                </article>
-                <article>
-                    <a href="./publicacion.html">
-                        <h4 title="Peligro de incendio en el edificio abandonado">Peligro de incendio en el edificio
-                            abandonado</h4>
-                        <img src="./img/edificio_abandonado.jpg" alt="nano coche" class="fotosPubli">
-                    </a>
-                    <div><span class="fechas">03-04-2022</span><span class="f2"><a class="icon-user">Usuario5</a></span>
-                    </div>
-                </article>
-                <article>
-                    <a href="./publicacion.html">
-                        <h4 title="Por favor a ver si recogen la basura de una vez que ya huele">Por favor a ver si
-                            recogen la basura de una vez que ya huele</h4>
-                        <img src="./img/basura_cont.jpg" alt="nano coche" class="fotosPubli">
-                    </a>
-                    <div><span class="fechas">05-06-2022</span><span class="f2"><a class="icon-user">Usuario6</a></span>
-                    </div>
-                </article>
+            <div id ="contenedorPublicaciones">
             </div>
         </section>
 
@@ -147,6 +96,10 @@
         <footer>
             <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 - Acerca</a></span>
         </footer>
-    </body>
 
+        <script>
+            completarFormulario();
+            mostrarPublicaciones();
+         </script>
+    </body>
 </html>
