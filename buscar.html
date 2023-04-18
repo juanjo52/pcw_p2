@@ -63,15 +63,19 @@
                 </tr>
                 <tr>
                     <td><label>Desde: </label></td>
-                    <td><input type="date"></td>
+                    <td><input type="date" id="menorFecha"></td>
                     <td><label>Hasta: </label></td>
-                    <td><input type="date"></td>
+                    <td><input type="date" id="mayorFecha"></td>
                 </tr>
                 <tr>
                     <td><label>Ubicación: </label></td>
                     <td><label><input type="text" placeholder="Separar por comas" id="zonaPubli"></label></td>
                     <td></td>
                     <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button onclick="mostrarPublicaciones()" type="submit">Buscar</button></td>
                 </tr>
             </table>
         </section>
@@ -99,7 +103,6 @@
 
         <script>
             completarFormulario();
-            mostrarPublicaciones();
          </script>
     </body>
 </html>

@@ -13,14 +13,16 @@ function mostrarPublicaciones() {
 
     url = url + '?pag=0&lpag=4';  //pag nº pagina, lpag cuantos elementos hay en la página
 
-    const campo = document.getElementById('zonaPubli'); 
+    const campo = document.getElementById('zonaPubli').value; 
+    
+    fetch(url).then(function(response){
+        if(response.ok){
+            response.json().then(function(datos){
+                console.log(datos);
+                datos.FILAS.forEach(function(e){
+                
+                    if(e.nombreZona == campo){
 
-    if(campo.value ===''){
-        fetch(url).then(function(response){
-            if(response.ok){
-                response.json().then(function(datos){
-                    console.log(datos);
-                    datos.FILAS.forEach(function(e){
                         let article = document.createElement('article');
 
                         article.innerHTML= 
@@ -34,17 +36,17 @@ function mostrarPublicaciones() {
                             '</span></div>';
                         
                         document.querySelector('#contenedorPublicaciones').appendChild(article);
-                    });
+                    }
+                    else{
+                        console.log('mala direccion' + campo.value);
+                    }
                 });
-            }
-        }).catch(function(error){
-            console.log(error);
-        });
-    }
-    else{
-        
-        
-    }
+            });
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+    
 }
 
 
