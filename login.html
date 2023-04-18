@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="cssfont/fontello.css"> 
     <title>P1</title>
+    <script src="./login.js"></script>
     <!-- en css salta advertencia -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
@@ -22,29 +23,23 @@
         <h1>InfoBarrio</h1>
         <h2>Aquí te escuchamos</h2>
     </header>
-    <nav>
+    <nav id="menuNav">
         <label for="chkMenu">&equiv;</label>
         <input type="checkbox" id="chkMenu">
-        <ul class="enlaces">
-            <li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>
-            <li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>
-            <li><a href="./login.html" class="icon-login"><span>Login</span></a></li>
-            <li><a href="./index.html" class="icon-logout"><span>Logout</span></a></li>
-            <li><a href="./registro.html" class="icon-user-add"><span>Registro</span></a></li>
-            <li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>
-        </ul>
     </nav>
 
     <section>
             
-        <form>
+        <form onsubmit="hacerLogin(event)">
             <h3>Iniciar sesión</h3><br>
-                <label>Nombre:</label>
-                <input type="text" class="area" placeholder="Nombre..." autofocus required><br>
-                <label>Contraseña:</label>
-                <input type="password" class="area" placeholder="Contraseña..." required> <br>
+                <label for="login">Nombre:</label>
+                <input type="text" id="login" name="login" class="area" placeholder="Nombre..." autofocus required><br>
+                <label for="pwd">Contraseña:</label>
+                <input type="password" id="pwd" name="pwd" class="area" placeholder="Contraseña..." required> <br>
                 <div class="botones">
-                    <a href="./registro.html">Registrarse</a><input type="submit" value="Acceder" >
+                    <a href="./registro.html">Registrarse</a>
+                    <input type="submit" value="Acceder" >
+                    <input type="reset" value="Restablecer" >
                 </div>
         </form>   
     </section>
@@ -53,5 +48,8 @@
     <footer>
         <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 -  Acerca</a></span>
     </footer>
+    <script>
+        muestraNav();
+    </script>
 </body>
 </html>
