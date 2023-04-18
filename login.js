@@ -59,7 +59,7 @@ function muestraNav() {
         ul.innerHTML = '<li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>'+
         '<li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>'+
         '<li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>'+
-        '<li><a href="./index.html" class="icon-logout"><span>Logout</span></a></li>';
+        '<li><a href="./index.html" onclick="logout();" class="icon-logout"><span>Logout</span></a></li>';
 
         document.querySelector('#menuNav').appendChild(ul);
     } else {
@@ -71,3 +71,4 @@ function muestraNav() {
         document.querySelector('#menuNav').appendChild(ul);
     }
 }
+
