@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="cssfont/fontello.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/acerca.css">
+    <script src="./acerca.js"></script>
     <!-- en css salta advertencia -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
@@ -24,17 +25,9 @@
         <h1>InfoBarrio</h1>
         <h2>Aquí te escuchamos</h2>
     </header>
-    <nav>
+    <nav id="menuNav">
         <label for="chkMenu">&equiv;</label>
         <input type="checkbox" id="chkMenu">
-        <ul class="enlaces">
-            <li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>
-            <li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>
-            <li><a href="./login.html" class="icon-login"><span>Login</span></a></li>
-            <li><a href="./index.html" class="icon-logout"><span>Logout</span></a></li>
-            <li><a href="./registro.html" class="icon-user-add"><span>Registro</span></a></li>
-            <li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>
-        </ul>
     </nav>
 
     <section id="seccion01">
@@ -126,6 +119,9 @@
     <footer>
         <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 - Acerca</a></span>
     </footer>
+    <script>
+        muestraNav();
+    </script>
 </body>
 
 </html>

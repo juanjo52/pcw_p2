@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/registro.css">
     <!-- <link rel="stylesheet" href="./css/login.css"> -->
     <link rel="stylesheet" href="cssfont/fontello.css">
+    <script src="./registro.js"></script>
 
     <title>P1</title>
 
@@ -28,17 +29,11 @@
         <h2>Aquí te escuchamos</h2>
     </header>
 
-    <nav>
+    <nav id="menuNav">
         <label for="chkMenu">&equiv;</label>
         <input type="checkbox" id="chkMenu">
-        <ul class="enlaces">
-            <li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>
-            <li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>
-            <li><a href="./login.html" class="icon-login"><span>Login</span></a></li>
-            <li><a href="./index.html" class="icon-logout"><span>Logout</span></a></li>
-            <li><a href="./registro.html" class="icon-user-add"><span>Registro</span></a></li>
-            <li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>
-        </ul>
+        
+
     </nav>
     <!-- <div class="container">
         <section>
@@ -102,6 +97,10 @@
     <footer>
         <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 - Acerca</a></span>
     </footer>
+
+    <script>
+        muestraNav();
+    </script>
 </body>
 
 </html>
