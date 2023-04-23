@@ -41,7 +41,7 @@ function mostrarPublicaciones() {
     let url = 'api/publicaciones';
 
     const zona = document.getElementById('zonaPubli').value;
-    // const palabras = document.getElementById('pClave').value;
+    const palabras = document.getElementById('pClave').value;
     const fechaMenor = document.getElementById('menorFecha').value;
     const fechaMayor = document.getElementById('mayorFecha').value;
 
@@ -61,11 +61,15 @@ function mostrarPublicaciones() {
     if (zona != "") {
         url = `${url}?z=${zona}&`;
     }
+    if (palabras != "") {
+
+        url = `${url}${zona ? '&' : '?'}t=${palabras}`;
+    }
     if (fechaMenor != "") {
-        url = `${url}${zona ? '&' : '?'}fd=${fechaMenor}`;
+        url = `${url}${zona ||palabras ? '&' : '?'}fd=${fechaMenor}`;
     }
     if (fechaMayor != "") {
-        url = `${url}${zona || fechaMenor ? '&' : '?'}fh=${fechaMayor}`;
+        url = `${url}${zona || palabras || fechaMenor ? '&' : '?'}fh=${fechaMayor}`;
     }
     
     url = url + '?pag=0&lpag=4';
