@@ -2,7 +2,7 @@
 function muestraNav() {
     let ul = document.createElement("ul");
     ul.classList.add('enlaces');
-    
+
     if(sessionStorage['_datos_']){
         ul.innerHTML = '<li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>'+
         '<li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>'+
@@ -33,28 +33,54 @@ function completarFormulario(){
     const urlParams = new URLSearchParams(window.location.search);
     const zona = urlParams.get('zona');
     const campo = document.getElementById('zonaPubli');
-    campo.value = zona; 
+    campo.value = zona;
 }
 
 function mostrarPublicaciones() {
- 
+
     let url = 'api/publicaciones';
 
-    url = url + '?pag=0&lpag=4';  //pag nº pagina, lpag cuantos elementos hay en la página
+    const zona = document.getElementById('zonaPubli').value;
+    // const palabras = document.getElementById('pClave').value;
+    const fechaMenor = document.getElementById('menorFecha').value;
+    const fechaMayor = document.getElementById('mayorFecha').value;
 
-    const campo = document.getElementById('zonaPubli').value; 
+    const elementoPadre = document.getElementById('contenedorPublicaciones');
+
+    if (elementoPadre) { //Esto es para evitar repeticiones al hacer varias veces el onclick
+        while (elementoPadre.firstChild) {
+          elementoPadre.removeChild(elementoPadre.firstChild);
+        }
+    }
+
+    // if(zona != "") url = url + `?z=${zona}&`;
+    // if(palabras != "") url = url + `?t=${palabras}`;
+    // if(fechaMenor != "") url = url + `?fd=${fechaMenor}&`;
+    // if(fechaMayor != "") url = url + `?fh=${fechaMayor}&`;
+
+    if (zona != "") {
+        url = `${url}?z=${zona}&`;
+    }
+    if (fechaMenor != "") {
+        url = `${url}${zona ? '&' : '?'}fd=${fechaMenor}`;
+    }
+    if (fechaMayor != "") {
+        url = `${url}${zona || fechaMenor ? '&' : '?'}fh=${fechaMayor}`;
+    }
     
+    url = url + '?pag=0&lpag=4';
+
+    console.log(url);
+
     fetch(url).then(function(response){
         if(response.ok){
             response.json().then(function(datos){
                 console.log(datos);
                 datos.FILAS.forEach(function(e){
-                
-                    if(e.nombreZona == campo){
 
-                        let article = document.createElement('article');
+                    let article = document.createElement('article');
 
-                        article.innerHTML= 
+                        article.innerHTML=
                             '<a href="./publicacion.html">'
                             +
                             '<h4 title="'+e.titulo+'">'+ e.titulo+'</h4>'
@@ -63,19 +89,15 @@ function mostrarPublicaciones() {
                             +
                             '<div> <span class="fechas">'+e.fechaCreacion+'</span> <span class="f2"><a class="icon-user">'+ e.autor +
                             '</span></div>';
-                        
+
                         document.querySelector('#contenedorPublicaciones').appendChild(article);
-                    }
-                    else{
-                        console.log('mala direccion' + campo.value);
-                    }
                 });
             });
         }
     }).catch(function(error){
         console.log(error);
     });
-    
+
 }
 
 
