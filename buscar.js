@@ -83,9 +83,9 @@ function mostrarPublicaciones() {
                 datos.FILAS.forEach(function(e){
 
                     let article = document.createElement('article');
-
+                        console.log(e.id);
                         article.innerHTML=
-                            '<a href="./publicacion.html">'
+                            '<a href="./publicacion.html?id='+e.id+'">'
                             +
                             '<h4 title="'+e.titulo+'">'+ e.titulo+'</h4>'
                             +
