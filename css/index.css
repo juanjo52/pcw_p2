@@ -209,6 +209,18 @@ body > nav > label {
     transition: all .5s ease-in-out;
 }
 
+
+.botones > button:disabled {
+    background-color: #e2e97f;
+    cursor: auto;
+}
+
+.botones > button:disabled:hover {
+    background-color: #e2e97f;
+    cursor: auto;
+    color: #333;
+}
+
 .botones > button:hover {
     background-color: #00594F;
     color: #fff;
