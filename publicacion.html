@@ -32,6 +32,82 @@
     </nav>
 
     <section>
+        <div id="datosPubli">
+
+        </div>
+    </section>
+
+    <section>
+        <h3>Fotos:</h3> 
+        <input type="button" value="Ocultar/mostrar imagenes" id="imgBTN">
+        <hr>
+        <div class="fotosDentro" id="imgsPubli">
+
+        </div>
+    </section>
+
+    <section class="section03">
+        <h3>Comentarios:</h3>
+        <hr>
+        <div class="area2">
+            <p>Tienes que estar <a href="./login.html">logueado </a>para poder comentar</p>
+            <div>
+                <textarea placeholder="Escribe aqui tu comentario..." maxlength="250"></textarea>
+                <div class="bot2">
+                    <input type="reset" value="Limpiar">
+                    <input type="button" value="Enviar">
+                </div>
+            </div>
+        </div>
+        <div class="coments" id="comentPubli">
+
+        </div>
+
+    </section>
+    <!-- 
+     <section class="section03">
+        <h3>Comentarios:</h3>
+        <hr>
+        <div class="area2">
+            <p>Tienes que estar <a href="./login.html">logueado </a>para poder comentar</p>
+            <div>
+                <textarea placeholder="Escribe aqui tu comentario..." maxlength="250"></textarea>
+                <div class="bot2">
+                    <input type="reset" value="Limpiar">
+                    <input type="button" value="Enviar">
+                </div>
+            </div>
+        </div>
+
+        <div class="coments">
+            <div>
+                <img src="./img/no-image.png" alt="none">
+                <p><span class="usernames">User1</span></p>
+            </div>
+            <div>
+                <label>10 de enero de 2023</label>
+            </div>
+            <p>Nam tortor est, auctor sed libero a, ornare dignissim purus.Integer a augue ac nulla cursus dictum in ut
+                nisl. </p>
+            <hr class="men">
+        </div>
+
+        <div class="coments">
+            <div>
+                <img src="./img/no-image.png" alt="none">
+                <p><span class="usernames">User33</span></p>
+            </div>
+            <div>
+                <label>16 de marzo de 2023</label>
+            </div>
+            <p>Nam tortor est, auctor sed libero a, ornare dignissim purus.Integer a augue ac nulla cursus dictum in ut
+                nisl. </p>
+            <hr class="men">
+        </div>
+
+    </section>    
+        
+    <section>
         <h3>Semaforo roto en el cruce</h3>
         <hr>
         <p>
@@ -57,7 +133,7 @@
         </div>
         <hr class="men">
     </section>
-
+    
     <section>
         <h3>Fotos:</h3>
         <hr>
@@ -135,14 +211,16 @@
             <hr class="men">
         </div>
 
-    </section>
+    </section> -->
 
     <footer>
         <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 - Acerca</a></span>
     </footer>
     <script>
+        compruebaURL();
         muestraNav();
+        mostrarPublicacion();
+        // botonesMGyNMG();
     </script>
 </body>
-
 </html>
