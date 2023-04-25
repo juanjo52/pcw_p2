@@ -58,11 +58,28 @@ function mostrarPublicacion(){
                         '<label>'+ "Ubicación: " + e.nombreZona +'</label>' + 
                         '<hr class = "men">' + 
                         '<div class ="datos">' +
-                            '<label><img src="./fotos/usuarios/'+e.fotoAutor+'" alt="foto user" class="fotosUsuario">'+ e.autor +'<span class="icon-calendar"></span>'+e.fechaCreacion+'</label>'+
-                            '<span>'+
-                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" id = "BMG" onclick = "prueba()" disabled>'+
-                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id = "BNMG" disabled>'+
-                            '</span>'+
+                            '<label><img src="./fotos/usuarios/'+e.fotoAutor+'" alt="foto user" class="fotosUsuario">'+ e.autor +'<span class="icon-calendar"></span>'+e.fechaCreacion+'</label>';
+                        
+                        let botones = document.createElement('span');
+                        
+                        if(sessionStorage['_datos_']){
+                            botones.innerHTML = 
+                            '<span id="bot">'+
+                                '<input type="button" value="Me gusta ('+e.nMeGusta+')">'+
+                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')">'+
+                            '</span>';
+                        }
+                        else{
+                            botones.innerHTML =
+                            '<span id="bot">'+
+                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" disabled>'+
+                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" disabled>'+
+                            '</span>';
+                        }
+
+                        article.querySelector('#bot').appendChild(botones);
+                        
+                        article.innerHTML += 
                             '<label><span class = "icon-comment"></span>'+"NUMERO DE COMENTARIOS"+'</label>'+
                         '</div>'+
                         '<hr class="men';
@@ -111,6 +128,7 @@ function mostrarPublicacion(){
                     let fp = new Date(e.fechaHora);
                     const modificada = formatoFecha(fp);
 
+
                         article.innerHTML=
                         '<div>'+
                             '<img src="./fotos/usuarios/'+e.foto+'"alt ="none" class="fotosUsuario">'+
@@ -127,21 +145,6 @@ function mostrarPublicacion(){
         console.log(error);
     });
 }
-
-// function botonesMGyNMG(){
-
-//     if(sessionStorage['_datos_']){
-
-//         const bm = document.getElementById('BMG');
-//         const bnm = document.getElementById('BNMG');
-//         if(bm == null && bnm == null){
-
-//             bm.disabled = false;
-//             bnm.disabled = false;
-//         }
-//     }
-// }
-
 function formatoFecha(fecha){
 
     let f = new Date(fecha);
@@ -158,7 +161,3 @@ function formatoFecha(fecha){
 
     return fecha_formateada;
 }
-
-// function prueba(){
-//     console.log("No esta bloqueado");
-// }
