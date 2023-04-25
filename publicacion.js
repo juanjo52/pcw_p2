@@ -64,31 +64,26 @@ function mostrarPublicacion(){
                         '<label>'+ "Ubicación: " + e.nombreZona +'</label>' + 
                         '<hr class = "men">' + 
                         '<div class ="datos">' +
-                            '<label><img src="./fotos/usuarios/'+e.fotoAutor+'" alt="foto user" class="fotosUsuario">'+ e.autor +'<span class="icon-calendar"></span>'+e.fechaCreacion+'</label>';
+                            '<label><img src="./fotos/usuarios/'+e.fotoAutor+'" alt="foto user" class="fotosUsuario">'+ e.autor +'<span class="icon-calendar"></span>'+e.fechaCreacion+'</label></div>';
                         
                         let botones = document.createElement('span');
                         
                         if(sessionStorage['_datos_']){
                             botones.innerHTML = 
-                            '<span id="bot">'+
-                                '<input type="button" value="Me gusta ('+e.nMeGusta+')">'+
-                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')">'+
-                            '</span>';
+                            '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta">'+
+                            '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta">';
                         }
                         else{
                             botones.innerHTML =
-                            '<span id="bot">'+
-                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" disabled>'+
-                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" disabled>'+
-                            '</span>';
+                            '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" disabled>'+
+                            '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta" disabled>';
                         }
 
-                        article.querySelector('#bot').appendChild(botones);
+                        article.querySelector('.datos').appendChild(botones);
                         
-                        article.innerHTML += 
-                            '<label><span class = "icon-comment"></span>'+"NUMERO DE COMENTARIOS"+'</label>'+
-                        '</div>'+
-                        '<hr class="men';
+                        let numC = document.createElement('label');
+                        numC.innerHTML = '<span class = "icon-comment"></span>' + 'NUMERO DE COMENTARIOS';
+                        article.querySelector('.datos').appendChild(numC);
 
                     document.querySelector('#datosPubli').appendChild(article);
                 });
@@ -166,4 +161,9 @@ function formatoFecha(fecha){
     let fecha_formateada = `${dia_semana}, ${dia} de ${mes} de ${anio}`;
 
     return fecha_formateada;
+}
+
+function votar(){
+
+    
 }
