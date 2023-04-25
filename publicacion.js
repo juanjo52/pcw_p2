@@ -32,8 +32,6 @@ function compruebaURL(){
     const urlParam = new URLSearchParams(window.location.search);
 
     if(!urlParam.has('id')) window.location.replace('./index.html');
-
-
 }
 
 function mostrarPublicacion(){
@@ -62,8 +60,8 @@ function mostrarPublicacion(){
                         '<div class ="datos">' +
                             '<label><img src="./fotos/usuarios/'+e.fotoAutor+'" alt="foto user" class="fotosUsuario">'+ e.autor +'<span class="icon-calendar"></span>'+e.fechaCreacion+'</label>'+
                             '<span>'+
-                                '<input type="button" value="Me gusta ('+e.nMeGusta+')">'+
-                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')">'+
+                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" id = "BMG" onclick = "prueba()" disabled>'+
+                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id = "BNMG" disabled>'+
                             '</span>'+
                             '<label><span class = "icon-comment"></span>'+"NUMERO DE COMENTARIOS"+'</label>'+
                         '</div>'+
@@ -101,7 +99,6 @@ function mostrarPublicacion(){
     });
 
     //Muestra Comentarios
-
     let urlcomm = 'api/publicaciones/'+z+ '/comentarios';
     console.log(urlcomm);
     fetch(urlcomm).then(function(response){
@@ -110,12 +107,16 @@ function mostrarPublicacion(){
                 console.log(datos);
                 datos.FILAS.forEach(function(e){
                     let article = document.createElement('article');
+                    
+                    let fp = new Date(e.fechaHora);
+                    const modificada = formatoFecha(fp);
+
                         article.innerHTML=
                         '<div>'+
                             '<img src="./fotos/usuarios/'+e.foto+'"alt ="none" class="fotosUsuario">'+
                             '<p><span class="usernames">'+e.nombre+'</span></p>'+
                         '</div>'+
-                        '<div><label>'+ e.fechaHora+'</label></div>'+
+                        '<div><label>'+ modificada +'</label></div>'+
                         '<p>'+ e.texto+'</p>'+
                         '<hr class ="men">';    
                     document.querySelector('#comentPubli').appendChild(article);
@@ -126,3 +127,38 @@ function mostrarPublicacion(){
         console.log(error);
     });
 }
+
+// function botonesMGyNMG(){
+
+//     if(sessionStorage['_datos_']){
+
+//         const bm = document.getElementById('BMG');
+//         const bnm = document.getElementById('BNMG');
+//         if(bm == null && bnm == null){
+
+//             bm.disabled = false;
+//             bnm.disabled = false;
+//         }
+//     }
+// }
+
+function formatoFecha(fecha){
+
+    let f = new Date(fecha);
+
+    let dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    let meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+    let dia_semana = dias_semana[f.getDay()];
+    let dia = f.getDate();
+    let mes = meses[f.getMonth()];
+    let anio = f.getFullYear();
+
+    let fecha_formateada = `${dia_semana}, ${dia} de ${mes} de ${anio}`;
+
+    return fecha_formateada;
+}
+
+// function prueba(){
+//     console.log("No esta bloqueado");
+// }
