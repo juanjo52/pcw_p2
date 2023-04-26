@@ -1,13 +1,32 @@
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 2;
 let currentPage = 0;
-let totalItems = 0;
+let totalItems;
+
+console.log("Current Page: "+ currentPage);
+
+function getTotalItems() {
+    let url = 'api/publicaciones';
+    fetch(url).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (datos) {
+                console.log(datos);
+                totalItems = datos.FILAS.length;
+                console.log("Total Items: "+ totalItems);
+                updatePagination();
+                updateItems();
+            });
+        }
+    });
+}
+
+getTotalItems();
 
 function updatePagination() {
     const totalPages = Math.ceil(totalItems / PAGE_SIZE);
-
+    console.log("Total Pages: "+ totalPages);
+    console.log("Current Page: "+ currentPage);
 
     // Disable/enable buttons as needed
-
     const firstPageButton = document.querySelector('#first-page');
     const prevPageButton = document.querySelector('#prev-page');
     const nextPageButton = document.querySelector('#next-page');
@@ -18,32 +37,49 @@ function updatePagination() {
     lastPageButton.disabled = currentPage == totalPages - 1;
 
     // Update page number display
-    const currentPageDisplay = document.querySelector('#current-page');
-    const totalPageDisplay = document.querySelector('#total-pages');
+    let currentPageDisplay = document.querySelector('#current-page');
+    let totalPageDisplay = document.querySelector('#total-pages');
     currentPageDisplay.textContent = currentPage + 1;
     totalPageDisplay.textContent = totalPages;
 
     // Add click event listeners to buttons
-    firstPageButton.addEventListener('click', () => {
+    firstPageButton.removeEventListener('click', firstPageClickHandler);
+    prevPageButton.removeEventListener('click', prevPageClickHandler);
+    nextPageButton.removeEventListener('click', nextPageClickHandler);
+    lastPageButton.removeEventListener('click', lastPageClickHandler);
+
+    firstPageButton.addEventListener('click', firstPageClickHandler);
+    prevPageButton.addEventListener('click', prevPageClickHandler);
+    nextPageButton.addEventListener('click', nextPageClickHandler);
+    lastPageButton.addEventListener('click', lastPageClickHandler);
+
+    function firstPageClickHandler() {
         currentPage = 0;
         updateItems();
         updatePagination();
-    });
-    prevPageButton.addEventListener('click', () => {
-        currentPage--;
-        updateItems();
-        updatePagination();
-    });
-    nextPageButton.addEventListener('click', () => {
-        currentPage++;
-        updateItems();
-        updatePagination();
-    });
-    lastPageButton.addEventListener('click', () => {
+    }
+
+    function prevPageClickHandler() {
+        if (currentPage > 0) {
+            currentPage--;
+            updateItems();
+            updatePagination();
+        }
+    }
+
+    function nextPageClickHandler() {
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            updateItems();
+            updatePagination();
+        }
+    }
+
+    function lastPageClickHandler() {
         currentPage = totalPages - 1;
         updateItems();
         updatePagination();
-    });
+    }
 }
 
 
@@ -66,7 +102,6 @@ function updateItems() {
         if (response.ok) {
             response.json().then(function (datos) {
                 console.log(datos);
-                totalItems = datos.FILAS.length;
                 datos.FILAS.forEach(function (e) {
                     let article = document.createElement('article');
 
@@ -93,6 +128,9 @@ function updateItems() {
     });
 
 }
+
+
+
 
 function muestraNav() {
     let ul = document.createElement("ul");
