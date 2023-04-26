@@ -8,7 +8,6 @@
     <title>P1</title>
     <link rel="stylesheet" href="cssfont/fontello.css"> 
     <link rel="stylesheet" href="./css/index.css">
-    <script src="./index.js"></script>
     <!-- en css salta advertencia -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
@@ -37,11 +36,11 @@
     
     <div class="partePaginacion">
         <div class="botones" id="pagination">
-            <button type="button" id="first-page">&laquo;</button>
-            <button type="button" id="prev-page">&lsaquo;</button>
+            <button type="button" id="first-page"  onclick="updateItems(true, 0, false)">&laquo;</button>
+            <button type="button" id="prev-page" onclick="updateItems(false, -1, false)">&lsaquo;</button>
             <span>Página <span id="current-page"></span> de <span id="total-pages"></span></span> 
-            <button type="button" id="next-page">&rsaquo;</button>
-            <button type="button" id="last-page">&raquo;</button>
+            <button type="button" id="next-page" onclick="updateItems(false, 1, false)">&rsaquo;</button>
+            <button type="button" id="last-page" onclick="updateItems(false, 0, true)">&raquo;</button>
         </div>
     </div>
 
@@ -49,12 +48,12 @@
     <footer>
         <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 -  Acerca</a></span>
     </footer>
-
+    <script src="./index.js"></script>
     <script>
-        updatePagination();
-        updateItems();
+        //updatePagination();
+        updateItems(true, 0, false);
         muestraNav();
-     </script>
+    </script>
 </body>
 
 </html>
