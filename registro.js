@@ -41,6 +41,13 @@ login.addEventListener("blur", function(evt) {
     compruebaDisponibleLogin();
 });
 
+//OBTENER INPUT PWD2, PARA PONER LLAMAR MENSAJE DE SI CONTRASEÑAS COINCIDEN O NO
+let pwd2 = document.getElementById('pwd2');
+
+pwd2.addEventListener("keyup", function(evt) {
+    compruebaPwd();
+});
+
 function compruebaDisponibleLogin() {
     let spanMensaje = document.getElementById('msgDisponible');
     let url = 'api/usuarios/'
@@ -75,6 +82,32 @@ function compruebaDisponibleLogin() {
     }).catch(function(error){
         console.log(error);
     });
+}
+
+function compruebaPwd() {
+    let pwd = document.getElementById('pwd');
+    let spanPwd = document.getElementById('pwdCoincide');
+
+    if(pwd.value == pwd2.value){
+        if(spanPwd.classList.contains('no')){
+            spanPwd.classList.remove('no');
+        }
+
+        spanPwd.classList.add('si');
+        spanPwd.textContent = 'Las contraseñas coinciden :D';
+    } else {
+        if(spanPwd.classList.contains('si')){
+            spanPwd.classList.remove('si');
+        }
+
+        spanPwd.classList.add('no');
+        spanPwd.textContent = 'Las contraseñas no coinciden (';
+    }
+}
+
+// Función que comprueba los label, si tienen la clase 'si' dejará registro. Si tienen clase 'no' no dejará registro
+function dejaRegistro(){
+    
 }
 
 

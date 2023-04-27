@@ -68,13 +68,14 @@
 
             <label class="area" for="login">Login: (username)</label>
             <input type="text" maxlength="200" id="login" name="login" pattern="^(?![0-9])\S{4,20}$" required>
-            <span id="msgDisponible" class="si"></span>
+            <span id="msgDisponible"></span>
 
             <label for="pwd">Contraseña:</label>
             <input type="password" pattern="^[a-zA-Z0-9._-]{4,20}$" id="pwd" name="pwd" required>
 
             <label for="pwd2">Confirmar Contraseña:</label>
             <input type="password" pattern="^[a-zA-Z0-9._-]{4,20}$" id="pwd2" name="pwd2" required>
+            <span id="pwdCoincide"></span>
 
             <label for="email">Dirección de correo electrónico:</label>
             <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
@@ -104,6 +105,7 @@
     <script src="./registro.js"></script>
     <script>
         muestraNav();
+        dejaRegistro();
     </script>
 </body>
 
