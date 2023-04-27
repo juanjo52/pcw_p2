@@ -117,6 +117,17 @@ function mostrarPublicacion(){
     });
 
     //Muestra Comentarios
+    
+}
+
+
+function mostrarComentarios(){
+
+    
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+
     let urlcomm = 'api/publicaciones/'+z+ '/comentarios';
     console.log(urlcomm);
     fetch(urlcomm).then(function(response){
@@ -145,6 +156,15 @@ function mostrarPublicacion(){
         console.log(error);
     });
 }
+
+function borrarComentarios(){
+
+    const divABorrar = document.getElementById("comentPubli");
+    while (divABorrar.firstChild) {
+        divABorrar.removeChild(divABorrar.firstChild);
+    }
+}
+
 function formatoFecha(fecha){
 
     let f = new Date(fecha);
@@ -204,23 +224,29 @@ function hacerComentario(){
     let login = datos.LOGIN;
     let token = datos.TOKEN;
 
+    const coment = document.getElementById('areacoment').value;
+
+    const formData = new FormData();
+    formData.append('texto', coment);
+
     const request = {
         method : 'POST',
         headers: {
             'Authorization': `${login}:${token}`
-        }
+        },
+        body: formData
     }
 
-    let url = 'api/publicaciones/'+z+ '/comentario';
+    console.log(coment);
+    
+    let url = 'api/publicaciones/' + z + '/comentarios';
 
     fetch(url,request).then(function(response){
         if(response.ok){    
             console.log(response);
             response.json().then(function(datos){
-                
-                const coment = document.getElementById('areacoment').value;
-                datos = coment;
-                console.log(datos);
+                borrarComentarios();
+                mostrarComentarios();
             });
         }
     }).catch(function(error){
