@@ -119,6 +119,11 @@ form > .no{
     color: rgb(124, 4, 4);
 }
 
+div > .no{
+    background-color: #ffffffce;
+    color: rgb(124, 4, 4);
+}
+
 form {
     color: white;
     width: auto;
