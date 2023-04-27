@@ -70,7 +70,7 @@ function mostrarPublicacion(){
                         
                         if(sessionStorage['_datos_']){
                             botones.innerHTML = 
-                            '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta">'+
+                            '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" onclick="votarmgs()">'+
                             '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta">';
                         }
                         else{
@@ -163,7 +163,51 @@ function formatoFecha(fecha){
     return fecha_formateada;
 }
 
-function votar(){
-
+function OcultarMostrarImg(){
     
+    if(document.getElementById("imgsPubli").style.display != "none"){
+        document.getElementById("imgsPubli").style.display = "none"
+    }
+    else{
+        document.getElementById("imgsPubli").style.display = "";
+    }
+    
+    console.log("hola");
+}
+
+function votarmgs(){
+
+    // '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta">'+
+    // '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta">';
+
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    let datos = JSON.parse(sessionStorage.getItem('_datos_'));
+    let login = datos.LOGIN;
+    let token = datos.TOKEN;
+
+    const request = {
+        method : 'POST',
+        headers: {
+            'Authorization': `${login}:${token}`
+        }
+    }
+
+    let urlcomm = 'api/publicaciones/'+z+ '/megusta';
+
+    console.log(urlcomm);
+    fetch(urlcomm,request).then(function(response){
+        if(response.ok){    
+            response.json().then(function(datos){
+                console.log(datos);
+                datos.FILAS.forEach(function(e){
+                    console.log(e); 
+                });    
+            });
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+
 }
