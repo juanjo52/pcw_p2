@@ -189,6 +189,16 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+input[type="submit"]:disabled {
+    background-color: #e2e97f;
+    cursor: auto;
+}
+input[type="submit"]:disabled:hover {
+    color: #333;
+    background-color: #e2e97f;
+    cursor: auto;
+}
+
 input[type="submit"]:hover{
     background-color: #00594F;
     color: #fff;

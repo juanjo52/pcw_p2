@@ -48,6 +48,14 @@ pwd2.addEventListener("keyup", function(evt) {
     compruebaPwd();
 });
 
+// Comprobar cuando se puede hacer registro
+let form = document.getElementById('formRegistro');
+
+form.addEventListener("keyup", function(evt) {
+    dejaRegistro();
+});
+
+
 function compruebaDisponibleLogin() {
     let spanMensaje = document.getElementById('msgDisponible');
     let url = 'api/usuarios/'
@@ -107,7 +115,15 @@ function compruebaPwd() {
 
 // Función que comprueba los label, si tienen la clase 'si' dejará registro. Si tienen clase 'no' no dejará registro
 function dejaRegistro(){
-    
+    let spanLogin = document.getElementById('msgDisponible');
+    let spanPwd = document.getElementById('pwdCoincide');
+    let botonEnviar = document.getElementById('botonEnviar');
+
+    if(!spanLogin.classList.contains('si') || !spanPwd.classList.contains('si')){
+        botonEnviar.disabled = true;
+    } else {
+        botonEnviar.disabled = false;
+    }
 }
 
 
