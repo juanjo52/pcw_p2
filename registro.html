@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./css/registro.css">
     <!-- <link rel="stylesheet" href="./css/login.css"> -->
     <link rel="stylesheet" href="cssfont/fontello.css">
-    <script src="./registro.js"></script>
 
     <title>P1</title>
 
@@ -64,17 +63,21 @@
         <form>
             <h3>Registro</h3>
             <hr>
-            <label class="area">Nombre:</label>
-            <input type="text" maxlength="200" pattern = "^(?![0-9])\S{4,20}$"required autofocus>
+            <label class="area" for="nombre">Nombre:</label>
+            <input type="text" maxlength="200" id="nombre" name="nombre" required autofocus>
 
-            <label>Contraseña:</label>
-            <input type="password" pattern="^[a-zA-Z0-9._-]{4,20}$" required>
+            <label class="area" for="login">Login: (username)</label>
+            <input type="text" maxlength="200" id="login" name="login" pattern="^(?![0-9])\S{4,20}$" required>
+            <span id="msgDisponible" class="si"></span>
 
-            <label>Confirmar Contraseña:</label>
-            <input type="password" pattern="^[a-zA-Z0-9._-]{4,20}$">
+            <label for="pwd">Contraseña:</label>
+            <input type="password" pattern="^[a-zA-Z0-9._-]{4,20}$" id="pwd" name="pwd" required>
 
-            <label>Dirección de correo electrónico:</label>
-            <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            <label for="pwd2">Confirmar Contraseña:</label>
+            <input type="password" pattern="^[a-zA-Z0-9._-]{4,20}$" id="pwd2" name="pwd2" required>
+
+            <label for="email">Dirección de correo electrónico:</label>
+            <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 
             
             <div class="botonera">
@@ -84,10 +87,10 @@
         </form>
 
         <div class="imagenes">
-            <label for="foto1" class="labelFoto">Imagen:<img src="./img/no-image.png" alt="Imagen 1"></label>
+            <label for="foto" class="labelFoto">Imagen:<img src="./img/no-image.png" alt="Imagen 1"></label>
             <div class="button-group">
-                <label for="foto1" class="icon-folder-add"></label>
-                <input type="file" id="foto1" accept="image/*">
+                <label for="foto" class="icon-folder-add"></label>
+                <input type="file" id="foto" name="foto" accept="image/*">
 
                 <button class="icon-folder-delete"></button>
             </div>
@@ -98,6 +101,7 @@
         <span class="f3"><a href="./acerca.html">&copy; Practica 1 PCW - 2023 - Acerca</a></span>
     </footer>
 
+    <script src="./registro.js"></script>
     <script>
         muestraNav();
     </script>

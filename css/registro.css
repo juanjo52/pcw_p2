@@ -111,6 +111,14 @@ input[type="file"] {
 
 }
 
+form > .si{
+    color: rgb(8, 254, 8);
+}
+
+form > .no{
+    color: rgb(124, 4, 4);
+}
+
 form {
     color: white;
     width: auto;
