@@ -71,7 +71,7 @@ function mostrarPublicacion(){
                         if(sessionStorage['_datos_']){
                             botones.innerHTML = 
                             '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" onclick="votarmgs()">'+
-                            '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta">';
+                            '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta" onclick="votarmgs()">';
                         }
                         else{
                             botones.innerHTML =
@@ -101,8 +101,8 @@ function mostrarPublicacion(){
             response.json().then(function(datos){
                 console.log(datos);
                 datos.FILAS.forEach(function(e,i){
-                    let article = document.createElement('article');
 
+                    let article = document.createElement('article');
                         article.innerHTML=
                         '<img src="./fotos/pubs/'+e.archivo+'" alt ="none">'+
                         '<h4>Foto '+(i+1)+'</h4>'+
@@ -129,7 +129,6 @@ function mostrarPublicacion(){
                     let fp = new Date(e.fechaHora);
                     const modificada = formatoFecha(fp);
 
-
                         article.innerHTML=
                         '<div>'+
                             '<img src="./fotos/usuarios/'+e.foto+'"alt ="none" class="fotosUsuario">'+
@@ -137,8 +136,8 @@ function mostrarPublicacion(){
                         '</div>'+
                         '<div><label>'+ modificada +'</label></div>'+
                         '<p>'+ e.texto+'</p>'+
-                        '<hr class ="men">';    
-                    document.querySelector('#comentPubli').appendChild(article);
+                        '<hr class ="men">';  
+                        document.querySelector('#comentPubli').appendChild(article);
                 });    
             });
         }
@@ -171,11 +170,66 @@ function OcultarMostrarImg(){
     else{
         document.getElementById("imgsPubli").style.display = "";
     }
-    
-    console.log("hola");
 }
 
-function votarmgs(){
+function crearFormulario(){
+
+    let form = document.createElement('article');
+
+    if(!sessionStorage['_datos_']){
+        form.innerHTML = 
+        '<p>Debes estar <a href="./login.html">logueado</a> para poder dejar un comentario...</p>'
+
+        document.querySelector('#formPubli').appendChild(form);
+    }
+    else{
+        fetch("./comentario.html").then(function(response) {
+            response.text().then(function(data) {
+                form.innerHTML = data;
+                document.querySelector('#formPubli').appendChild(form);
+            });
+        })
+        .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
+    }
+}
+
+function hacerComentario(){
+
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    let datos = JSON.parse(sessionStorage.getItem('_datos_'));
+    let login = datos.LOGIN;
+    let token = datos.TOKEN;
+
+    const request = {
+        method : 'POST',
+        headers: {
+            'Authorization': `${login}:${token}`
+        }
+    }
+
+    let url = 'api/publicaciones/'+z+ '/comentario';
+
+    fetch(url,request).then(function(response){
+        if(response.ok){    
+            console.log(response);
+            response.json().then(function(datos){
+                
+                const coment = document.getElementById('areacoment').value;
+                datos = coment;
+                console.log(datos);
+            });
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+
+function votarmgs(){ //ESTO NO ESTA NADA BIEN
 
     // '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta">'+
     // '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta">';
@@ -194,16 +248,42 @@ function votarmgs(){
         }
     }
 
-    let urlcomm = 'api/publicaciones/'+z+ '/megusta';
+    let url = 'api/publicaciones/'+z+ '/megusta';
 
-    console.log(urlcomm);
-    fetch(urlcomm,request).then(function(response){
+    console.log(url);
+    fetch(url,request).then(function(response){
         if(response.ok){    
             response.json().then(function(datos){
                 console.log(datos);
-                datos.FILAS.forEach(function(e){
-                    console.log(e); 
-                });    
+                console.log(datos.meGusta);
+
+                const sol = datos.meGusta;
+
+                const btnNoMeGusta = document.getElementById("btnNoMeGusta");
+                const btnMeGusta = document.getElementById("btnMeGusta");
+
+                btnNoMeGusta.disabled = sol === 1;
+                btnMeGusta.disabled = sol === -1;
+
+                // Si sol no es 1 ni -1, habilita ambos botones
+                if (sol !== 1 && sol !== -1) {
+                    btnNoMeGusta.disabled = false;
+                    btnMeGusta.disabled = false;
+                }      
+                // const sol = datos.meGusta;
+
+                // if(sol == 1){
+
+                //     document.getElementById("btnNoMeGusta").disabled = true;
+                // }
+                // else if (sol == -1){
+
+                //     document.getElementById("btnMeGusta").disabled = true;
+                // }
+                // else{
+                //     document.getElementById("btnNoMeGusta").disabled = false;
+                //     document.getElementById("btnMeGusta").disabled = false;
+                // }      
             });
         }
     }).catch(function(error){
