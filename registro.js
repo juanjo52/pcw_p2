@@ -4,7 +4,8 @@
     }
 })();
 
-
+// Tamaño maximo imagen
+const maxSize = 300000; //Bytes = 300 KB
 
 function muestraNav() {
     let ul = document.createElement("ul");
@@ -109,7 +110,7 @@ function compruebaPwd() {
         }
 
         spanPwd.classList.add('no');
-        spanPwd.textContent = 'Las contraseñas no coinciden (';
+        spanPwd.textContent = 'Las contraseñas no coinciden :(';
     }
 }
 
@@ -117,6 +118,8 @@ function compruebaPwd() {
 function dejaRegistro(){
     let spanLogin = document.getElementById('msgDisponible');
     let spanPwd = document.getElementById('pwdCoincide');
+    let spanFoto = document.getElementById('avisoFoto');
+
     let botonEnviar = document.getElementById('botonEnviar');
 
     if(!spanLogin.classList.contains('si') || !spanPwd.classList.contains('si')){
@@ -126,5 +129,35 @@ function dejaRegistro(){
     }
 }
 
+
+// PARTE IMAGENES
+let fotoUsu = document.getElementById('fotoUsu');
+
+
+function mostrarFoto(inp){
+    let fichero = inp.files[0]/*,
+        img = inp.parentElement.querySelector('img')*/;
+    
+        if(fichero.size > maxSize){
+            let avisoFoto = document.getElementById('avisoFoto');
+            avisoFoto.textContent = 'El tamaño máximo para la foto son 300 KB'
+            avisoFoto.classList.add('no');
+            fotoUsu.src = './img/no-image.png';
+
+        } else {
+            fotoUsu.src = URL.createObjectURL( fichero );
+            avisoFoto.classList.remove('no');
+            avisoFoto.textContent = ''
+        }
+    
+}
+
+function eliminarFoto(){
+    if(!fotoUsu.src.includes("no-image")){
+        fotoUsu.src = './img/no-image.png';
+    }
+}
+
+  
 
 
