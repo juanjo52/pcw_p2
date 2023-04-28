@@ -82,7 +82,7 @@ function mostrarPublicacion(){
                         article.querySelector('.datos').appendChild(botones);
                         
                         let numC = document.createElement('label');
-                        numC.innerHTML = '<span class = "icon-comment"></span>' + 'NUMERO DE COMENTARIOS';
+                        numC.innerHTML = '<span class = "icon-comment"></span><a id = "numComents" value=""></a>';
                         article.querySelector('.datos').appendChild(numC);
 
                     document.querySelector('#datosPubli').appendChild(article);
@@ -120,7 +120,6 @@ function mostrarPublicacion(){
     
 }
 
-
 function mostrarComentarios(){
 
     
@@ -136,7 +135,7 @@ function mostrarComentarios(){
                 console.log(datos);
                 datos.FILAS.forEach(function(e){
                     let article = document.createElement('article');
-                    
+                
                     let fp = new Date(e.fechaHora);
                     const modificada = formatoFecha(fp);
 
@@ -149,7 +148,10 @@ function mostrarComentarios(){
                         '<p>'+ e.texto+'</p>'+
                         '<hr class ="men">';  
                         document.querySelector('#comentPubli').appendChild(article);
-                });    
+                });  
+
+                document.getElementById('numComents').textContent = datos.FILAS.length; 
+                 
             });
         }
     }).catch(function(error){
@@ -215,6 +217,32 @@ function crearFormulario(){
     }
 }
 
+function crearModal(){
+
+    let dialogo = document.createElement('dialog');
+
+    dialogo.innerHTML = 
+    '<h3>¡Comentario publicado correctamente!</h3>'+
+    '<button onclick="cerrarDialogo()">Cerrar</button>';
+
+    document.body.appendChild(dialogo);
+    dialogo.showModal();
+}
+
+function cerrarDialogo(){
+    
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    document.querySelector('dialog').close();
+    document.querySelector('dialog').remove();
+}
+
+function limpiarArea(){
+
+    document.getElementById('areacoment').value = "";
+}
+
 function hacerComentario(){
 
     const urlParam = new URLSearchParams(window.location.search);
@@ -245,15 +273,16 @@ function hacerComentario(){
         if(response.ok){    
             console.log(response);
             response.json().then(function(datos){
+                crearModal();
                 borrarComentarios();
                 mostrarComentarios();
+                document.getElementById('areacoment').value = "";
             });
         }
     }).catch(function(error){
         console.log(error);
-    });
+    });   
 }
-
 
 function votarmgs(){ //ESTO NO ESTA NADA BIEN
 
