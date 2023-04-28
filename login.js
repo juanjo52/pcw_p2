@@ -44,8 +44,7 @@ function hacerLogin(evt){
     xhr.send(fd);
 }
 
-function cerrarDialogo(valor){
-    console.log(valor);
+function cerrarDialogo(){
     document.querySelector('dialog').close();
     document.querySelector('dialog').remove();
     window.location.replace("./index.html");

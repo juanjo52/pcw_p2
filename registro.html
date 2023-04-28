@@ -60,9 +60,10 @@
 
     <div class="container">
         
-        <form id="formRegistro">
+        <form id="formRegistro" onsubmit="hacerRegistro(event)">
             <h3>Registro</h3>
             <hr>
+            
             <label class="area" for="nombre">Nombre:</label>
             <input type="text" maxlength="200" id="nombre" name="nombre" required autofocus>
 
@@ -79,26 +80,28 @@
 
             <label for="email">Dirección de correo electrónico:</label>
             <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-
             
+            <div class="imagenes">
+                <label for="foto" class="labelFoto">
+                    Imagen:<img id="fotoUsu" src="./img/no-image.png" alt="Imagen 1">
+                </label>
+                <div class="button-group">
+                    <label for="foto" class="icon-folder-add"></label>
+                    <input type="file" id="foto" name="foto" accept="image/*" onchange="mostrarFoto(this);">
+                    <button class="icon-folder-delete" onclick="eliminarFoto();"></button>
+    
+                    <span id="avisoFoto"></span>
+                </div>
+            </div>
+
             <div class="botonera">
                 <input id="botonEnviar" type="submit" value="Enviar" disabled>
                 <input type="reset" value="Borrar">
             </div>
+            
         </form>
 
-        <div class="imagenes">
-            <label for="foto" class="labelFoto">
-                Imagen:<img id="fotoUsu" src="./img/no-image.png" alt="Imagen 1">
-            </label>
-            <div class="button-group">
-                <label for="foto" class="icon-folder-add"></label>
-                <input type="file" id="foto" name="foto" accept="image/*" onchange="mostrarFoto(this);">
-                <button class="icon-folder-delete" onclick="eliminarFoto();"></button>
-
-                <span id="avisoFoto"></span>
-            </div>
-        </div>
+        
     </div>
 
     <footer>

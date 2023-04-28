@@ -118,7 +118,6 @@ function compruebaPwd() {
 function dejaRegistro(){
     let spanLogin = document.getElementById('msgDisponible');
     let spanPwd = document.getElementById('pwdCoincide');
-    let spanFoto = document.getElementById('avisoFoto');
 
     let botonEnviar = document.getElementById('botonEnviar');
 
@@ -158,6 +157,47 @@ function eliminarFoto(){
     }
 }
 
-  
+// Función para registrar usuario
+function hacerRegistro(evt) {
+    evt.preventDefault(); // cancela la acción por defecto del evento
 
+    console.log(evt.currentTarget);
 
+    let frm = evt.currentTarget,
+        xhr = new XMLHttpRequest(),
+        url = 'api/usuarios/registro',
+        fd = new FormData(frm);
+
+    xhr.open('POST', url, true);
+    xhr.responseType = 'json';
+
+    xhr.onload = function() {
+        let r = xhr.response;
+        console.log(r);
+
+        if(r.RESULTADO == 'OK'){
+            let dialogo = document.createElement('dialog'),
+                html = '';
+
+            html += '<h3>¡Has sido registrado ';
+            html += r.LOGIN;
+            html += '!</h3>';
+            html += '<button onclick="cerrarDialogo()">Cerrar</button>';
+
+            dialogo.innerHTML = html;
+
+            document.body.appendChild(dialogo);
+            dialogo.showModal();
+        } else {
+            console.log('error');
+        }
+    }
+
+    xhr.send(fd);
+}
+
+function cerrarDialogo(){
+    document.querySelector('dialog').close();
+    document.querySelector('dialog').remove();
+    window.location.replace("./index.html");
+}
