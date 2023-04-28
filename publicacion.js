@@ -49,12 +49,46 @@ function mostrarPublicacion(){
 
     console.log(url);
 
+    if(sessionStorage['_datos_']){
+
+        let datos = JSON.parse(sessionStorage.getItem('_datos_'));
+        let login = datos.LOGIN;
+        let token = datos.TOKEN;
+
+        const request = {
+            method : 'GET',
+            headers: {
+                'Authorization': `${login}:${token}`
+            }
+        }
+
+        let url2 = 'api/publicaciones/' + z + '/megusta';
+
+        fetch(url2,request).then(function(response){
+            if(response.ok){    
+                console.log(response);
+                response.json().then(function(datos){
+                    console.log(datos);
+                    datos.FILAS.forEach(function(e){
+                        console.log("------------------");
+                        console.log(e.meGusta);
+                        return sol = e.meGusta;
+                    });  
+                });
+            }
+        }).catch(function(error){
+            console.log(error);
+        });   
+    }
+
     //Muestra la informacion principal
     fetch(url).then(function(response){
         if(response.ok){
             response.json().then(function(datos){
                 console.log(datos);
                 datos.FILAS.forEach(function(e){
+                    console.log("==================");
+                    console.log(e)
                     let article = document.createElement('article');
 
                         article.innerHTML=
@@ -69,9 +103,21 @@ function mostrarPublicacion(){
                         let botones = document.createElement('span');
                         
                         if(sessionStorage['_datos_']){
-                            botones.innerHTML = 
-                            '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" onclick="votarmgs()">'+
-                            '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta" onclick="votarmgs()">';
+                            if( sol == 1){
+                                botones.innerHTML = 
+                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" onclick="votarMeGusta()">'+
+                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta" onclick="votarNoMeGusta()" disabled>';
+                            }
+                            else if(sol == 0){
+                                botones.innerHTML = 
+                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" onclick="votarMeGusta()" disabled>'+
+                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta" onclick="votarNoMeGusta()">';
+                            }
+                            else if(sol == -1){
+                                botones.innerHTML = 
+                                '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta" onclick="votarMeGusta()">'+
+                                '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta" onclick="votarNoMeGusta()">';
+                            }
                         }
                         else{
                             botones.innerHTML =
@@ -92,8 +138,15 @@ function mostrarPublicacion(){
     }).catch(function(error){
         console.log(error);
     });
+}
 
-    //Muestra las imagenes
+function mostrarIMG(){
+
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    let url = 'api/publicaciones/'+z;
+
     let urlimgs = 'api/publicaciones/'+z+ '/fotos';
   
     fetch(urlimgs).then(function(response){
@@ -115,9 +168,6 @@ function mostrarPublicacion(){
     }).catch(function(error){
         console.log(error);
     });
-
-    //Muestra Comentarios
-    
 }
 
 function mostrarComentarios(){
@@ -284,10 +334,7 @@ function hacerComentario(){
     });   
 }
 
-function votarmgs(){ //ESTO NO ESTA NADA BIEN
-
-    // '<input type="button" value="Me gusta ('+e.nMeGusta+')" id ="btnMeGusta">'+
-    // '<input type="button" value="No me gusta ('+e.nNoMeGusta+')" id ="btnNoMeGusta">';
+function votarMeGusta(){
 
     const urlParam = new URLSearchParams(window.location.search);
     const z = urlParam.get('id');
@@ -317,32 +364,78 @@ function votarmgs(){ //ESTO NO ESTA NADA BIEN
                 const btnNoMeGusta = document.getElementById("btnNoMeGusta");
                 const btnMeGusta = document.getElementById("btnMeGusta");
 
-                btnNoMeGusta.disabled = sol === 1;
-                btnMeGusta.disabled = sol === -1;
+                console.log(btnMeGusta.value);
 
-                // Si sol no es 1 ni -1, habilita ambos botones
-                if (sol !== 1 && sol !== -1) {
-                    btnNoMeGusta.disabled = false;
+                // btnNoMeGusta.disabled = sol === 1;
+                // btnMeGusta.disabled = sol === -1;
+
+                if(sol == 1){
+                    
+                    btnNoMeGusta.disabled = true;
+                    document.getElementById("btnMeGusta").value = `Me gusta (${datos.nMeGusta})`;
+                    console.log("Al usuario le gusta");
+                }else if(sol == -1){
+
                     btnMeGusta.disabled = false;
-                }      
-                // const sol = datos.meGusta;
-
-                // if(sol == 1){
-
-                //     document.getElementById("btnNoMeGusta").disabled = true;
-                // }
-                // else if (sol == -1){
-
-                //     document.getElementById("btnMeGusta").disabled = true;
-                // }
-                // else{
-                //     document.getElementById("btnNoMeGusta").disabled = false;
-                //     document.getElementById("btnMeGusta").disabled = false;
-                // }      
+                    btnNoMeGusta.disabled = false;
+                    document.getElementById("btnMeGusta").value = `Me gusta (${datos.nMeGusta})`;
+                    console.log("El usuario no tiene voto");
+                } 
             });
         }
     }).catch(function(error){
         console.log(error);
     });
 
+}
+
+function votarNoMeGusta(){ 
+
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    let datos = JSON.parse(sessionStorage.getItem('_datos_'));
+    let login = datos.LOGIN;
+    let token = datos.TOKEN;
+
+    const request = {
+        method : 'POST',
+        headers: {
+            'Authorization': `${login}:${token}`
+        }
+    }
+
+    let url = 'api/publicaciones/'+z+ '/nomegusta';
+
+    console.log(url);
+    fetch(url,request).then(function(response){
+        if(response.ok){    
+            response.json().then(function(datos){
+                console.log(datos);
+                console.log(datos.meGusta);
+
+                const sol = datos.meGusta;
+
+                const btnNoMeGusta = document.getElementById("btnNoMeGusta");
+                const btnMeGusta = document.getElementById("btnMeGusta");
+
+                console.log(btnMeGusta.value);
+
+                if(sol == 0){
+                    
+                    btnMeGusta.disabled = true;
+                    document.getElementById("btnNoMeGusta").value = `No me gusta (${datos.nNoMeGusta})`;
+                    console.log("Al usuario no le gusta");
+                }else if(sol == -1){
+
+                    btnMeGusta.disabled = false;
+                    btnNoMeGusta.disabled = false;
+                    document.getElementById("btnNoMeGusta").value = `No me gusta (${datos.nNoMeGusta})`;
+                    console.log("El usuario no tiene voto");
+                }
+            });
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
 }
