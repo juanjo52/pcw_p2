@@ -17,6 +17,10 @@ section > table > tr > td > div > div > input{
     text-align: right;
 }
 
+.esconde {
+    display: none;
+}
+
 
 /* Como poner articulos en cada tamaño sin tener que cambiar cada media query*/
 #seccion01 > div {

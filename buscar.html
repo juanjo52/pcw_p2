@@ -68,7 +68,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><button onclick="mostrarPublicaciones()" type="submit">Buscar</button></td>
+                    <td><button onclick="updateItems(true, 0, false);" type="submit">Buscar</button></td>
                 </tr>
             </table>
         </section>
@@ -81,12 +81,12 @@
         </section>
 
         <div class="partePaginacion">
-            <div class="botones">
-                <button type="button">&laquo;</button>
-                <button type="button">&lsaquo;</button>
-                <span>Página 1 de 5</span>
-                <button type="button">&rsaquo;</button>
-                <button type="button">&raquo;</button>
+            <div class="botones esconde" id="pagination">
+                <button type="button" id="first-page"  onclick="updateItems(true, 0, false)">&laquo;</button>
+                <button type="button" id="prev-page" onclick="updateItems(false, -1, false)">&lsaquo;</button>
+                <span>Página <span id="current-page"></span> de <span id="total-pages"></span></span> 
+                <button type="button" id="next-page" onclick="updateItems(false, 1, false)">&rsaquo;</button>
+                <button type="button" id="last-page" onclick="updateItems(false, 0, true)">&raquo;</button>
             </div>
         </div>
         <!-- Arreglar el index.css -->
