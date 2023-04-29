@@ -56,40 +56,39 @@
                 <input type="submit" value="Enviar">
                 <input type="reset" value="Borrar">
             </div>
+            <div id="fotos">
+                <label>Imágenes:</label>
+                <div class="imagenes">
+                    <label for="foto1"><img src="./img/no-image.png" alt="Imagen 1"></label>
+                    <div class="button-group">
+                        <label for="foto1" class="icon-folder-add"></label>
+                        <input type="file" id="foto1" accept="image/*">
+
+                        <button class="icon-folder-delete"></button>
+                    </div>
+                </div>
+                <div class="imagenes">
+                    <label for="foto2"><img src="./img/no-image.png" alt="Imagen 2"></label>
+                    <div class="button-group">
+                        <label for="foto2" class="icon-folder-add"></label>
+                        <input type="file" id="foto2" accept="image/*">
+
+                        <button class="icon-folder-delete"></button>
+                    </div>
+                </div>
+                <div class="imagenes">
+                    <label for="foto3"><img src="./img/no-image.png" alt="Imagen 3"></label>
+                    <div class="button-group">
+                        <label for="foto3" class="icon-folder-add"></label>
+                        <input type="file" id="foto3" accept="image/*">
+
+                        <button class="icon-folder-delete"></button>
+                    </div>
+                </div>
+            </div>
         </form>
 
-        <div>
-            
-        </div>
 
-        <label>Imágenes:</label>
-        <div class="imagenes">
-            <label for="foto1"><img src="./img/no-image.png" alt="Imagen 1"></label>
-            <div class="button-group">
-                <label for="foto1" class="icon-folder-add"></label>
-                <input type="file" id="foto1" accept="image/*">
-
-                <button class="icon-folder-delete"></button>
-            </div>
-        </div>
-        <div class="imagenes">
-            <label for="foto2"><img src="./img/no-image.png" alt="Imagen 2"></label>
-            <div class="button-group">
-                <label for="foto2" class="icon-folder-add"></label>
-                <input type="file" id="foto2" accept="image/*">
-
-                <button class="icon-folder-delete"></button>
-            </div>
-        </div>
-        <div class="imagenes">
-            <label for="foto3"><img src="./img/no-image.png" alt="Imagen 3"></label>
-            <div class="button-group">
-                <label for="foto3" class="icon-folder-add"></label>
-                <input type="file" id="foto3" accept="image/*">
-
-                <button class="icon-folder-delete"></button>
-            </div>
-        </div>
     </div>
     <footer>
         <span class="f3"><a href="./acerca.html">&copy; Practica 2 PCW - 2023 - Acerca</a></span>
@@ -97,9 +96,8 @@
 
     <script>
         muestraNav();
+        // comprobarSesion();
     </script>
 </body>
-<script>
-    crear();
-</script>
+
 </html>
