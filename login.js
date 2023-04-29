@@ -19,7 +19,10 @@ function hacerLogin(evt){
         let r = xhr.response;
         console.log(r);
 
+        let msgError = document.getElementById('msgError');
+
         if(r.RESULTADO == 'OK'){
+            msgError.textContent = '';
             let dialogo = document.createElement('dialog'),
                 html = '';
 
@@ -36,8 +39,11 @@ function hacerLogin(evt){
 
             let datos = JSON.parse(sessionStorage['_datos_']);
             console.log(datos.LOGIN);
-        } else {
-            console.log('error');
+        } else if (r.RESULTADO == 'ERROR'){
+            msgError.textContent = r.DESCRIPCION;
+            console.log(r.DESCRIPCION);
+        }else {
+            console.log('error desconocido');
         }
     }
 
