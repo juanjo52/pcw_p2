@@ -24,3 +24,40 @@ function muestraNav() {
         document.querySelector('#menuNav').appendChild(ul);
     }
 }
+
+function comprobarSesion(){
+
+    if(!sessionStorage['_datos_']){
+        window.location.replace("./index.html");
+    } 
+}
+
+function recomiendaZonas(){
+
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    let url = 'api/publicaciones/'+z;
+
+    let urlimgs = 'api/publicaciones/'+z+ '/fotos';
+  
+    fetch(urlimgs).then(function(response){
+        if(response.ok){
+            response.json().then(function(datos){
+                console.log(datos);
+                datos.FILAS.forEach(function(e,i){
+
+                    let article = document.createElement('article');
+                        article.innerHTML=
+                        '<img src="./fotos/pubs/'+e.archivo+'" alt ="none">'+
+                        '<h4>Foto '+(i+1)+'</h4>'+
+                        '<div>'+ e.descripcion+ '</div>';
+                        
+                    document.querySelector('#imgsPubli').appendChild(article);
+                });    
+            });
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+}
