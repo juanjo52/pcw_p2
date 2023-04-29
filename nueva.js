@@ -70,9 +70,15 @@ function crearImagenes(){
         '<div class="button-group">'+
             '<label for="foto'+num+'" class="icon-folder-add"></label>'+
             '<input type="file" id="foto'+num+'" accept="image/*" name ="foto[]">'+
-            '<button class="icon-folder-delete"></button>'+
+            '<button class="icon-folder-delete" onclick="borrarImagenes(this)"></button>'+
         '</div>';
 
     document.querySelector('#fotos').appendChild(d);    
     console.log(num);
+}
+
+function borrarImagenes(btn) {
+    let div = btn.parentElement.parentElement;
+
+    div.remove();
 }
