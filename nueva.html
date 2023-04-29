@@ -35,11 +35,12 @@
 
     <section id="seccion01">
         <h3>Nueva publicacion</h3>
-        <button type="button" onclick="anyadirImagen()"><span class="icon-plus"></span>Añadir imagen</button>
+        <button type="button" onclick="crearImagenes()"><span class="icon-plus"></span>Añadir imagen</button>
         <hr>
     </section>
 
     <div class="container">
+        <span id="contador">0</span>
         <form>
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" name="titulo" maxlength="200" autofocus required>
@@ -48,8 +49,8 @@
             <textarea id="texto" name="texto" rows="5" cols="50" required></textarea>
 
             <!-- hacer lo del datalist -->
-            <label for="ubicacion">Ubicación:</label>
-            <input type="text" id="ubicacion" name="ubicacion" list="ubicaciones" maxlength="100" required>
+            <label for="zona">Ubicación:</label>
+            <input type="text" id="zona" name="ubicacion" list="ubicaciones" maxlength="100" required>
             <datalist id="ubicaciones">
             </datalist>
             <div class="botonera">
@@ -58,33 +59,7 @@
             </div>
             <div id="fotos">
                 <label>Imágenes:</label>
-                <div class="imagenes">
-                    <label for="foto1"><img src="./img/no-image.png" alt="Imagen 1"></label>
-                    <div class="button-group">
-                        <label for="foto1" class="icon-folder-add"></label>
-                        <input type="file" id="foto1" accept="image/*">
-
-                        <button class="icon-folder-delete"></button>
-                    </div>
-                </div>
-                <div class="imagenes">
-                    <label for="foto2"><img src="./img/no-image.png" alt="Imagen 2"></label>
-                    <div class="button-group">
-                        <label for="foto2" class="icon-folder-add"></label>
-                        <input type="file" id="foto2" accept="image/*">
-
-                        <button class="icon-folder-delete"></button>
-                    </div>
-                </div>
-                <div class="imagenes">
-                    <label for="foto3"><img src="./img/no-image.png" alt="Imagen 3"></label>
-                    <div class="button-group">
-                        <label for="foto3" class="icon-folder-add"></label>
-                        <input type="file" id="foto3" accept="image/*">
-
-                        <button class="icon-folder-delete"></button>
-                    </div>
-                </div>
+                
             </div>
         </form>
 
@@ -96,6 +71,7 @@
     <script>
         muestraNav();
         comprobarSesion();
+        recomiendaZonas();
     </script>
 </body>
 </html>

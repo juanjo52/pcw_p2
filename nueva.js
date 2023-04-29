@@ -34,30 +34,45 @@ function comprobarSesion(){
 
 function recomiendaZonas(){
 
-    const urlParam = new URLSearchParams(window.location.search);
-    const z = urlParam.get('id');
-
-    let url = 'api/publicaciones/'+z;
-
-    let urlimgs = 'api/publicaciones/'+z+ '/fotos';
+    let url = 'api/zonas/';
   
-    fetch(urlimgs).then(function(response){
+    fetch(url).then(function(response){
         if(response.ok){
             response.json().then(function(datos){
                 console.log(datos);
-                datos.FILAS.forEach(function(e,i){
+                datos.FILAS.forEach(function(e){
 
-                    let article = document.createElement('article');
-                        article.innerHTML=
-                        '<img src="./fotos/pubs/'+e.archivo+'" alt ="none">'+
-                        '<h4>Foto '+(i+1)+'</h4>'+
-                        '<div>'+ e.descripcion+ '</div>';
-                        
-                    document.querySelector('#imgsPubli').appendChild(article);
+                    const opt = document.createElement('option');
+                    opt.innerHTML = `${e.nombre}`;
+                    
+                    document.querySelector('#ubicaciones').appendChild(opt);
+                    console.log(e.nombre);
                 });    
             });
         }
     }).catch(function(error){
         console.log(error);
     });
+}
+
+function crearImagenes(){
+
+    const d = document.createElement('div');
+    let cont = document.querySelector('#contador');
+    let aux = Number(cont.textContent); 
+    cont.textContent = aux + 1;  
+    let num = cont.textContent;
+
+    d.classList.add('imagenes');
+    
+    d.innerHTML = 
+    '<label for = "foto'+num+'"><img src="./img/no-image.png" alt="Imagen '+num+'"></label>'+
+        '<div class="button-group">'+
+            '<label for="foto'+num+'" class="icon-folder-add"></label>'+
+            '<input type="file" id="foto'+num+'" accept="image/*" name ="foto[]">'+
+            '<button class="icon-folder-delete"></button>'+
+        '</div>';
+
+    document.querySelector('#fotos').appendChild(d);    
+    console.log(num);
 }

@@ -4,6 +4,10 @@
     align-items: flex-start;
 }
 
+#contador{
+    color: white;
+}
+
 form {
     display: block;
     /* flex: 2; */
