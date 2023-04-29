@@ -34,9 +34,12 @@ function logout() {
 function completarFormulario() {
 
     const urlParams = new URLSearchParams(window.location.search);
-    const zona = urlParams.get('zona');
+    const zona = urlParams.get('z');
     const campo = document.getElementById('zonaPubli');
     campo.value = zona;
+    if(campo.value != ""){
+        mostrarPublicaciones();
+    }
 }
 
 /* -------- Funciones Paginación --------- */
