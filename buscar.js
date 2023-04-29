@@ -38,7 +38,7 @@ function completarFormulario() {
     const campo = document.getElementById('zonaPubli');
     campo.value = zona;
     if(campo.value != ""){
-        mostrarPublicaciones();
+        updateItems(true, 0, false);
     }
 }
 
