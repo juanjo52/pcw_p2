@@ -1,4 +1,4 @@
-const PAGE_SIZE = 1; //CAMBIAR A 6 O LO QUE VEAMOS
+const PAGE_SIZE = 2; //CAMBIAR A 6 O LO QUE VEAMOS
 let totalItems;
 let currentPage;
 
@@ -79,7 +79,7 @@ function updateItems(principio, unidades, final) {
                     let article = document.createElement('article');
 
                     article.innerHTML =
-                        '<a href="./publicacion.html">'
+                        '<a href="./publicacion.html?id=' + e.id + '">'
                         +
                         '<h4 title="' + e.titulo + '">' + e.titulo + '</h4>'
                         +
