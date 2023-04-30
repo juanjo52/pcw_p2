@@ -70,7 +70,6 @@ function mostrarPublicacion(){
                 response.json().then(function(datos){
                     console.log(datos);
                     datos.FILAS.forEach(function(e){
-                        console.log("------------------");
                         console.log(e.meGusta);
                         return sol = e.meGusta;
                     });  
@@ -87,7 +86,6 @@ function mostrarPublicacion(){
             response.json().then(function(datos){
                 console.log(datos);
                 datos.FILAS.forEach(function(e){
-                    console.log("==================");
                     console.log(e)
                     let article = document.createElement('article');
 
@@ -261,8 +259,8 @@ function crearFormulario(){
                 document.querySelector('#formPubli').appendChild(form);
             });
         })
-        .catch(function(err) {
-            console.log('Fetch Error :-S', err);
+        .catch(function(error){
+            console.log(error);
         });
     }
 }
@@ -366,20 +364,15 @@ function votarMeGusta(){
 
                 console.log(btnMeGusta.value);
 
-                // btnNoMeGusta.disabled = sol === 1;
-                // btnMeGusta.disabled = sol === -1;
-
                 if(sol == 1){
                     
                     btnNoMeGusta.disabled = true;
                     document.getElementById("btnMeGusta").value = `Me gusta (${datos.nMeGusta})`;
-                    console.log("Al usuario le gusta");
                 }else if(sol == -1){
 
                     btnMeGusta.disabled = false;
                     btnNoMeGusta.disabled = false;
                     document.getElementById("btnMeGusta").value = `Me gusta (${datos.nMeGusta})`;
-                    console.log("El usuario no tiene voto");
                 } 
             });
         }
@@ -425,13 +418,12 @@ function votarNoMeGusta(){
                     
                     btnMeGusta.disabled = true;
                     document.getElementById("btnNoMeGusta").value = `No me gusta (${datos.nNoMeGusta})`;
-                    console.log("Al usuario no le gusta");
+                    
                 }else if(sol == -1){
 
                     btnMeGusta.disabled = false;
                     btnNoMeGusta.disabled = false;
                     document.getElementById("btnNoMeGusta").value = `No me gusta (${datos.nNoMeGusta})`;
-                    console.log("El usuario no tiene voto");
                 }
             });
         }

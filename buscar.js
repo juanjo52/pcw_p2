@@ -99,12 +99,7 @@ function updateItems(principio, unidades, final) {
             elementoPadre.removeChild(elementoPadre.firstChild);
         }
     }
-
-    // if(zona != "") url = url + `?z=${zona}&`;
-    // if(palabras != "") url = url + `?t=${palabras}`;
-    // if(fechaMenor != "") url = url + `?fd=${fechaMenor}&`;
-    // if(fechaMayor != "") url = url + `?fh=${fechaMayor}&`;
-
+    
     if (zona != "") {
         url = `${url}?z=${zona}&`;
     }

@@ -41,7 +41,6 @@ function updateItems(principio, unidades, final) {
     const elementoPadre = document.getElementById('contenedorPublicaciones');
 
     fetch(url).then(function (response) {
-        // console.log(elementoPadre);
         if (elementoPadre) { //Esto es para evitar repeticiones al hacer varias veces el onclick
             elementoPadre.innerHTML = ''
         }
@@ -114,7 +113,7 @@ function muestraNav() {
     if (sessionStorage['_datos_']) {
         datos = JSON.parse(sessionStorage['_datos_']);
         userName = datos.NOMBRE;
-        // console.log(userName);
+        
         ul.innerHTML = '<li><a href="./index.html" class="icon-home"><span>Inicio</span></a></li>' +
             '<li><a href="./buscar.html" class="icon-search"><span>Buscar</span></a></li>' +
             '<li><a href="./nueva.html" class="icon-plus"><span>Nueva</span></a></li>' +

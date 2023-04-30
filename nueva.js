@@ -93,7 +93,6 @@ function compruebaFoto(){
 
     if(label?.hasChildNodes()){
 
-        console.log("hijos si :(");
         let datos = JSON.parse(sessionStorage.getItem('_datos_'));
         let login = datos.LOGIN;
         let token = datos.TOKEN;
@@ -136,7 +135,7 @@ function compruebaFoto(){
         });
     }
     else{
-        console.log("hijos no :(");
+        
         let dialogo = document.createElement('dialog');
 
         dialogo.innerHTML =
@@ -164,7 +163,7 @@ function mostrarFoto(inp){
 
     let fotoUsu = document.getElementById(cID);
 
-    console.log(fotoUsu);
+   
 
     if(fichero.size > maxSize){
         crearModal();
