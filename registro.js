@@ -128,6 +128,20 @@ function dejaRegistro(){
     }
 }
 
+function resetRegistro() {
+    let spanLogin = document.getElementById('msgDisponible');
+    let spanPwd = document.getElementById('pwdCoincide');
+
+    let botonEnviar = document.getElementById('botonEnviar');
+
+    botonEnviar.disabled = true;
+    spanLogin.classList.remove('si'); 
+    spanPwd.classList.remove('si'); 
+
+    spanLogin.textContent = '';
+    spanPwd.textContent = '';
+}
+
 
 // PARTE IMAGENES
 let fotoUsu = document.getElementById('fotoUsu');
