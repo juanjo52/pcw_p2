@@ -24,7 +24,7 @@ function hacerLogin(evt){
         if(r.RESULTADO == 'OK'){
             msgError.textContent = '';
             let dialogo = document.createElement('dialog'),
-                html = '';
+              html = '';
 
             html += '<h3>Bienvenido ';
             html += r.NOMBRE;

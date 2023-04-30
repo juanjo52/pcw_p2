@@ -29,13 +29,13 @@ function comprobarSesion(){
 
     if(!sessionStorage['_datos_']){
         window.location.replace("./index.html");
-    } 
+    }
 }
 
 function recomiendaZonas(){
 
     let url = 'api/zonas/';
-  
+
     fetch(url).then(function(response){
         if(response.ok){
             response.json().then(function(datos){
@@ -44,10 +44,10 @@ function recomiendaZonas(){
 
                     const opt = document.createElement('option');
                     opt.innerHTML = `${e.nombre}`;
-                    
+
                     document.querySelector('#ubicaciones').appendChild(opt);
                     console.log(e.nombre);
-                });    
+                });
             });
         }
     }).catch(function(error){
@@ -60,81 +60,86 @@ function crearImagenes(){
 
     const d = document.createElement('div');
     let cont = document.querySelector('#contador');
-    let aux = Number(cont.textContent); 
-    cont.textContent = aux + 1;  
+    let aux = Number(cont.textContent);
+    cont.textContent = aux + 1;
     let num = cont.textContent;
 
     d.classList.add('imagenes');
-    
-    d.innerHTML = 
-    '<label for = "foto'+num+'" id ="foto'+num+'" ><img src="./img/no-image.png" alt="Imagen '+num+'" id ="img'+num+'"></label>'+
+
+    d.innerHTML =
+    '<label for = "foto'+num+'" id ="label'+num+'" ><img src="./img/no-image.png" alt="Imagen '+num+'" id ="img'+num+'"></label>'+
         '<div class="button-group">'+
             '<label for="foto'+num+'" class="icon-folder-add"></label>'+
-            '<input type="file" id="foto'+num+'" accept="image/*" name ="foto[]" onchange="mostrarFoto(this)">'+
+            '<input type="file" id="foto'+num+'" accept="image/*" name ="fotos[]" onchange="mostrarFoto(this)">'+
             '<button class="icon-folder-delete" onclick="borrarImagenes(this)"></button>'+
+            '<textarea name ="descripciones[]" id ="area'+num+'"></textarea>'+
         '</div>';
 
-    document.querySelector('#fotos').appendChild(d);    
+    document.querySelector('#fotos').appendChild(d);
     console.log(num);
+}
+
+function hacerpubli(vt){
+    vt.preventDefault();
+    compruebaFoto();
 }
 
 function compruebaFoto(){
 
     let cont = document.querySelector('#contador');
-    let aux = Number(cont.textContent); 
-    let lID = "foto"+aux;
+    let aux = Number(cont.textContent);
+    let lID = "label"+aux;
     let label = document.getElementById(lID);
 
     if(label?.hasChildNodes()){
 
-        // let datos = JSON.parse(sessionStorage.getItem('_datos_'));
-        // let login = datos.LOGIN;
-        // let token = datos.TOKEN;
+        console.log("hijos si :(");
+        let datos = JSON.parse(sessionStorage.getItem('_datos_'));
+        let login = datos.LOGIN;
+        let token = datos.TOKEN;
 
-        // const coment = document.getElementById('areacoment').value;
+        const coment = document.getElementById(lID);
+        const formulario = document.getElementById("formu");
+        const formData = new FormData(formulario);
 
-        // const formData = new FormData();
-        // formData.append('texto', coment);
+        console.log(formData);
 
-        // const request = {
-        //     method : 'POST',
-        //     headers: {
-        //         'Authorization': `${login}:${token}`
-        //     },
-        //     body: formData
-        // }
+        const request = {
+            method : 'POST',
+            headers: {
+                'Authorization': `${login}:${token}`
+            },
+            body: formData
+        }
 
-        // let url = 'api/publicaciones/';
+        let url = 'api/publicaciones/';
+        
+        fetch(url,request).then(function(response){
+            if(response.ok){
+                console.log(response);
+                response.json().then(function(datos){
 
-        // fetch(url,request).then(function(response){
-        //     if(response.ok){    
-        //         console.log(response);
-        //         response.json().then(function(datos){
-        //             crearModal();
-        //             borrarComentarios();
-        //             mostrarComentarios();
-        //             document.getElementById('areacoment').value = "";
-        //         });
-        //     }
-        // }).catch(function(error){
-        //     console.log(error);
-        // });   
+                    let dialogo = document.createElement('dialog');
 
-        let dialogo = document.createElement('dialog');
+                    dialogo.innerHTML =
+                    '<h3>¡La publicación se ha creado correctamente!</h3>'+
+                    '<p></p>'+
+                    '<button onclick="cerrarDialogo2()">Cerrar</button>';
 
-        dialogo.innerHTML = 
-        '<h3>¡La publicación se ha creado correctamente!</h3>'+
-        '<p></p>'+
-        '<button onclick="cerrarDialogo2()">Cerrar</button>';
-
-        document.body.appendChild(dialogo);
-        dialogo.showModal();
+                    document.body.appendChild(dialogo);
+                    dialogo.showModal();
+                    console.log(datos);
+                });
+            }
+        }).catch(function(error){
+            console.log(error);
+        });
     }
     else{
-        
+        console.log("hijos no :(");
         let dialogo = document.createElement('dialog');
 
-        dialogo.innerHTML = 
+        dialogo.innerHTML =
         '<h3>¡Para poder crear una nueva publicacion tiene que añadir una imagen!</h3>'+
         '<button onclick="cerrarDialogo()">Cerrar</button>';
 
@@ -152,11 +157,11 @@ function mostrarFoto(inp){
     let fichero = inp.files[0]/*,
         img = inp.parentElement.querySelector('img')*/;
     let cont = document.querySelector('#contador');
-    let aux = Number(cont.textContent); 
+    let aux = Number(cont.textContent);
     let cID = "img"+aux;
 
     console.log(cID);
-    
+
     let fotoUsu = document.getElementById(cID);
 
     console.log(fotoUsu);
@@ -178,7 +183,7 @@ function crearModal(){
 
     let dialogo = document.createElement('dialog');
 
-    dialogo.innerHTML = 
+    dialogo.innerHTML =
     '<h3>¡El tamaño máximo para la foto son 300 KB!</h3>'+
     '<button onclick="cerrarDialogo()">Cerrar</button>';
 
@@ -187,7 +192,7 @@ function crearModal(){
 }
 
 function cerrarDialogo(){
-    
+
     const urlParam = new URLSearchParams(window.location.search);
     const z = urlParam.get('id');
 
@@ -196,7 +201,7 @@ function cerrarDialogo(){
 }
 
 function cerrarDialogo2(){
-    
+
     const urlParam = new URLSearchParams(window.location.search);
     const z = urlParam.get('id');
 
