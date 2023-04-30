@@ -70,7 +70,7 @@ function crearImagenes(){
         '<div class="button-group">'+
             '<label for="foto'+num+'" class="icon-folder-add"></label>'+
             '<input type="file" id="foto'+num+'" accept="image/*" name ="foto[]" onchange="mostrarFoto(this)">'+
-            '<button class="icon-folder-delete" onclick="eliminarFoto()></button>'+
+            '<button class="icon-folder-delete" onclick="borrarImagenes(this)"></button>'+
             '<span id ="avisoFoto"></span>'+
         '</div>';
 
@@ -109,9 +109,8 @@ function mostrarFoto(inp){
         avisoFoto.textContent = ''
     }
 }
+function borrarImagenes(btn) {
+    let div = btn.parentElement.parentElement;
 
-function eliminarFoto(){
-    if(!fotoUsu.src.includes("no-image")){
-        fotoUsu.src = './img/no-image.png';
-    }
+    div.remove();
 }
