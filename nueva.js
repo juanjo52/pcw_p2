@@ -55,6 +55,7 @@ function recomiendaZonas(){
     });
 }
 
+
 function crearImagenes(){
 
     const d = document.createElement('div');
@@ -66,18 +67,81 @@ function crearImagenes(){
     d.classList.add('imagenes');
     
     d.innerHTML = 
-    '<label for = "foto'+num+'"><img src="./img/no-image.png" alt="Imagen '+num+'" id ="img'+num+'"></label>'+
+    '<label for = "foto'+num+'" id ="foto'+num+'" ><img src="./img/no-image.png" alt="Imagen '+num+'" id ="img'+num+'"></label>'+
         '<div class="button-group">'+
             '<label for="foto'+num+'" class="icon-folder-add"></label>'+
             '<input type="file" id="foto'+num+'" accept="image/*" name ="foto[]" onchange="mostrarFoto(this)">'+
             '<button class="icon-folder-delete" onclick="borrarImagenes(this)"></button>'+
-            '<span id ="avisoFoto"></span>'+
         '</div>';
 
     document.querySelector('#fotos').appendChild(d);    
     console.log(num);
 }
 
+function compruebaFoto(){
+
+    let cont = document.querySelector('#contador');
+    let aux = Number(cont.textContent); 
+    let lID = "foto"+aux;
+    let label = document.getElementById(lID);
+
+    if(label?.hasChildNodes()){
+
+        // let datos = JSON.parse(sessionStorage.getItem('_datos_'));
+        // let login = datos.LOGIN;
+        // let token = datos.TOKEN;
+
+        // const coment = document.getElementById('areacoment').value;
+
+        // const formData = new FormData();
+        // formData.append('texto', coment);
+
+        // const request = {
+        //     method : 'POST',
+        //     headers: {
+        //         'Authorization': `${login}:${token}`
+        //     },
+        //     body: formData
+        // }
+
+        // let url = 'api/publicaciones/';
+
+        // fetch(url,request).then(function(response){
+        //     if(response.ok){    
+        //         console.log(response);
+        //         response.json().then(function(datos){
+        //             crearModal();
+        //             borrarComentarios();
+        //             mostrarComentarios();
+        //             document.getElementById('areacoment').value = "";
+        //         });
+        //     }
+        // }).catch(function(error){
+        //     console.log(error);
+        // });   
+
+        let dialogo = document.createElement('dialog');
+
+        dialogo.innerHTML = 
+        '<h3>¡La publicación se ha creado correctamente!</h3>'+
+        '<p></p>'+
+        '<button onclick="cerrarDialogo2()">Cerrar</button>';
+
+        document.body.appendChild(dialogo);
+        dialogo.showModal();
+    }
+    else{
+        
+        let dialogo = document.createElement('dialog');
+
+        dialogo.innerHTML = 
+        '<h3>¡Para poder crear una nueva publicacion tiene que añadir una imagen!</h3>'+
+        '<button onclick="cerrarDialogo()">Cerrar</button>';
+
+        document.body.appendChild(dialogo);
+        dialogo.showModal();
+    }
+}
 
 // Tamaño maximo imagen
 const maxSize = 300000; //Bytes = 300 KB
@@ -98,19 +162,45 @@ function mostrarFoto(inp){
     console.log(fotoUsu);
 
     if(fichero.size > maxSize){
-        let avisoFoto = document.getElementById('avisoFoto');
-        avisoFoto.textContent = 'El tamaño máximo para la foto son 300 KB'
-        avisoFoto.classList.add('no');
+        crearModal();
         fotoUsu.src = './img/no-image.png';
 
     } else {
         fotoUsu.src = URL.createObjectURL( fichero );
-        avisoFoto.classList.remove('no');
-        avisoFoto.textContent = ''
     }
 }
 function borrarImagenes(btn) {
     let div = btn.parentElement.parentElement;
-
     div.remove();
+}
+
+function crearModal(){
+
+    let dialogo = document.createElement('dialog');
+
+    dialogo.innerHTML = 
+    '<h3>¡El tamaño máximo para la foto son 300 KB!</h3>'+
+    '<button onclick="cerrarDialogo()">Cerrar</button>';
+
+    document.body.appendChild(dialogo);
+    dialogo.showModal();
+}
+
+function cerrarDialogo(){
+    
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    document.querySelector('dialog').close();
+    document.querySelector('dialog').remove();
+}
+
+function cerrarDialogo2(){
+    
+    const urlParam = new URLSearchParams(window.location.search);
+    const z = urlParam.get('id');
+
+    document.querySelector('dialog').close();
+    document.querySelector('dialog').remove();
+    window.location.replace('./index.html');
 }
