@@ -1,4 +1,4 @@
-const PAGE_SIZE = 2; //CAMBIAR A 6 O LO QUE VEAMOS
+const PAGE_SIZE = 3; //CAMBIAR A 6 O LO QUE VEAMOS
 let totalItems;
 let currentPage;
 

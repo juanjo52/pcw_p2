@@ -43,7 +43,7 @@ function completarFormulario() {
 }
 
 /* -------- Funciones Paginación --------- */
-const PAGE_SIZE = 1; //CAMBIAR A 6 O LO QUE VEAMOS
+const PAGE_SIZE = 3; //CAMBIAR A 6 O LO QUE VEAMOS
 let totalItems;
 let currentPage;
 
@@ -160,7 +160,7 @@ function updateItems(principio, unidades, final) {
                         +
                         '<img src="./fotos/pubs/' + e.imagen + '"' + 'alt="nano coche" class="fotosPubli"> </a>'
                         +
-                        '<div> <span class="fechas">' + e.fechaCreacion + '</span> <span class="f2"><a class="icon-user">' + e.autor +
+                        '<div> <span class="fechas">' + e.fechaCreacion + '</span> <span class="f2"><img src="./fotos/usuarios/' + e.fotoAutor + '" alt="foto user" class="fotosUsuario">' + e.autor +
                         '</span></div>';
 
                     document.querySelector('#contenedorPublicaciones').appendChild(article);
