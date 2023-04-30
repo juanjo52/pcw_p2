@@ -126,7 +126,7 @@ function mostrarPublicacion(){
                         article.querySelector('.datos').appendChild(botones);
                         
                         let numC = document.createElement('label');
-                        numC.innerHTML = '<span class = "icon-comment"></span><a id = "numComents" value=""></a>';
+                        numC.innerHTML = '<span class = "icon-comment"></span><a id = "numComents"></a>';
                         article.querySelector('.datos').appendChild(numC);
 
                     document.querySelector('#datosPubli').appendChild(article);

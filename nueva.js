@@ -117,12 +117,12 @@ function compruebaFoto(){
             if(response.ok){
                 console.log(response);
                 response.json().then(function(datos){
-
+                    console.log(datos);
                     let dialogo = document.createElement('dialog');
 
                     dialogo.innerHTML =
                     '<h3>¡La publicación se ha creado correctamente!</h3>'+
-                    '<p></p>'+
+                    `<p>${datos.TITULO}</p>`+
                     '<button onclick="cerrarDialogo2()">Cerrar</button>';
 
                     document.body.appendChild(dialogo);
